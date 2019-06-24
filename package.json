@@ -27,6 +27,7 @@
     "@ionic/pro": "2.0.4",
     "angular-oauth2-oidc": "^5.0.2",
     "core-js": "^2.5.4",
+    "password-hash-and-salt": "^0.1.4",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.29"
