@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; 
-import * as config from 'config.json';
 
 
 @Component({
@@ -49,6 +48,10 @@ export class LoginPage implements OnInit {
   login(): void {
     console.log('Login successful');
     this.router.navigateByUrl('/');
+  }
+
+  createAccount(): void {
+    this.router.navigateByUrl('create-account');
   }
 
 }
