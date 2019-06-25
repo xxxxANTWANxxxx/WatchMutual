@@ -1,0 +1,20 @@
+img 
+{   
+    border-radius: 50%;   
+    width: 128px;   
+    height: 128px; 
+} 
+
+.img {   float: left; } 
+.post {   float: right; } 
+.wrapper {   float: left; }
+
+.caption {
+    display: block;
+}
+div.item {
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    width: 120px;
+}
