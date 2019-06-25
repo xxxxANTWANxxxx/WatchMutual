@@ -26,6 +26,7 @@
     "@ionic/angular": "^4.1.0",
     "@ionic/pro": "2.0.4",
     "angular-oauth2-oidc": "^5.0.2",
+    "cordova-plugin-ionic": "^5.0.0",
     "core-js": "^2.5.4",
     "password-hash-and-salt": "^0.1.4",
     "rxjs": "~6.5.1",
@@ -58,5 +59,18 @@
     "tslint": "~5.16.0",
     "typescript": "~3.1.6"
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/irishlad98/WatchMutual.git"
+  },
+  "keywords": [
+    "anthonys",
+    "bracnh"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/irishlad98/WatchMutual/issues"
+  }
 }
