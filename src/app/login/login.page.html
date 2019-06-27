@@ -46,15 +46,12 @@
 
 <ion-content padding>
     <form #loginForm="ngForm" (ngSubmit)="loginClicked()" autocomplete="off">
-        <ion-row>
-          <ion-col>
-            <ion-list inset>
-  
-              
+
+            <ion-list>
               <ion-item>
                 <ion-label position="stacked">Email <ion-text color="danger">*</ion-text></ion-label>
-                <ion-input placeholder="Email" name="username" id="loginField"
-                           type="text" required [(ngModel)]="username" #email></ion-input>
+                <ion-input placeholder="Email" name="email" id="loginField"
+                           type="text" required [(ngModel)]="email" ></ion-input>
               </ion-item>
               <ion-item>
                 <ion-label position="stacked">Password <ion-text color="danger">*</ion-text></ion-label>
@@ -62,15 +59,13 @@
                            type="password" required [(ngModel)]="password"></ion-input>
               </ion-item>
             </ion-list>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+
             <ion-button expand="block" type="submit" class="ion-no-margin"[disabled]="!loginForm.form.valid">Log In</ion-button>
             <p align=center>or</p>
             <ion-button expand="block" type="button" class="ion-no-margin"(click)="createAccount()">Create an Account</ion-button>
-          </ion-col>
-        </ion-row>
+
       </form>
 </ion-content>
+
+
+
