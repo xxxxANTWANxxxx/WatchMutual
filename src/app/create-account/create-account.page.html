@@ -9,56 +9,59 @@
   <form #loginForm="ngForm" (ngSubmit)="createClicked()" autocomplete="off">
     <ion-list lines="full" class="ion-no-margin ion-no-padding">
       <ion-item>
-        <ion-label position="stacked">Email <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input placeholder="Email" name="email" id="someField"
-                           type="text" required [(ngModel)]="email" ></ion-input>
+        <ion-label position="stacked">Email <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input placeholder="Email" name="email" id="someField" type="text" required [(ngModel)]="email"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="stacked">Password <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input placeholder="Password" name="password" id="passwordField"
-        type="password" required [(ngModel)]="password"></ion-input>
+        <ion-label position="stacked">Password <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input placeholder="Password" name="password" id="passwordField" type="password" required
+          [(ngModel)]="password"></ion-input>
       </ion-item>
 
       <ion-item>
-          <ion-label position="stacked">Confirm Password <ion-text color="danger">*</ion-text></ion-label>
-          <ion-input placeholder="Password" name="password2" id="password2Field"
-          type="password" required [(ngModel)]="password2"></ion-input>
-        </ion-item>
+        <ion-label position="stacked">Confirm Password <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input placeholder="Password" name="password2" id="password2Field" type="password" required
+          [(ngModel)]="password2"></ion-input>
+      </ion-item>
 
       <ion-item>
         <ion-label position="stacked">Information</ion-label>
-        <ion-input placeholder="First Name" name="firstname" id="fname"
-        type="text" required [(ngModel)]="first"></ion-input>
-        <ion-input placeholder="Last Name" name="lastname" id="lname"
-        type="text" required [(ngModel)]="last"></ion-input>
+        <ion-input placeholder="First Name" name="firstname" id="fname" type="text" required [(ngModel)]="first">
+        </ion-input>
+        <ion-input placeholder="Last Name" name="lastname" id="lname" type="text" required [(ngModel)]="last">
+        </ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Date of birth</ion-label>
-        <ion-datetime value="2019-06-27" displayFormat="YYYY MMM D" min="1960" max="2019"name="datefeild"
-        type= "text" required [(ngModel)]="date"></ion-datetime>
+        <ion-datetime value="2019-06-27" displayFormat="YYYY MMM D" min="1960" max="2019" name="datefeild" type="text"
+          required [(ngModel)]="date"></ion-datetime>
       </ion-item>
-      
+
       <ion-item>
         <ion-label id="todaysdate" value="todaysdate"></ion-label>
 
       </ion-item>
-     
-        <!--<p id="n"></p>-->
-     <script>
+
+      <!--<p id="n"></p>-->
+      <!--<script>
           n =  new Date().toLocaleDateString()
           y = n.getFullYear();
           m = n.getMonth() + 1;
           d = n.getDate();
           document.getElementById("todaysdate").innerHTML = m + "/" + d + "/" + y;
 
-      </script>
+      </script>-->
 
 
     </ion-list>
 
     <div class="ion-padding">
-      <ion-button expand="block" type="submit" class="ion-no-margin"[disabled]="!loginForm.form.valid">Create Account</ion-button>
+      <ion-button expand="block" type="submit" class="ion-no-margin" [disabled]="!loginForm.form.valid">Create Account
+      </ion-button>
     </div>
   </form>
 </ion-content>
