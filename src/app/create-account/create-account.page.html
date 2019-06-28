@@ -32,8 +32,28 @@
         type="text" required [(ngModel)]="first"></ion-input>
         <ion-input placeholder="Last Name" name="lastname" id="lname"
         type="text" required [(ngModel)]="last"></ion-input>
-        <ion-input placeholder="Date of birth"></ion-input>
       </ion-item>
+      <ion-item>
+        <ion-label>Date of birth</ion-label>
+        <ion-datetime value="2019-06-27" displayFormat="YYYY MMM D" min="1960" max="2019"name="datefeild"
+        type= "text" required [(ngModel)]="date"></ion-datetime>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label id="todaysdate" value="todaysdate"></ion-label>
+
+      </ion-item>
+     
+        <!--<p id="n"></p>-->
+     <script>
+          n =  new Date().toLocaleDateString()
+          y = n.getFullYear();
+          m = n.getMonth() + 1;
+          d = n.getDate();
+          document.getElementById("todaysdate").innerHTML = m + "/" + d + "/" + y;
+
+      </script>
+
 
     </ion-list>
 

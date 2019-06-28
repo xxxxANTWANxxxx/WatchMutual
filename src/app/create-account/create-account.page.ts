@@ -38,10 +38,12 @@ export class CreateAccountPage implements OnInit {
       "confirm": this.password2,
       "firstName": this.first,
       "lastName": this.last,
-      "dob": this.date
+      "dob": new Date(this.date).toJSON()
     }
 
     
+    
+
     
     this.http.post("http://localhost:4200/create-account", postData, httpOptions)
       .subscribe(data => {
