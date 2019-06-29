@@ -15,8 +15,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class MePage implements OnInit
 {
 
-  @ViewChild('email') email: any;
-
+  @ViewChild('email')
+  email: any;
   private first: string;
   private last: string;
   private bio: string;
@@ -34,11 +34,11 @@ export class MePage implements OnInit
 
   }
 
-  ionViewDidEnter()
+  ionViewWillEnter()
   {
-    console.log("I'm alive!");
     this.loadUser();
   }
+
   loadUser()
   {
     const httpOptions = {
@@ -63,11 +63,8 @@ export class MePage implements OnInit
     this.http.post("http://localhost:4200/me", postData, httpOptions)
       .subscribe(data =>
       {
-        console.log("display");
-        console.log(data);
 
-        //console.log(data['firstName']);
-        //console.log(data['lastName']);
+        //console.log(data); seee data
         this.info = data;
 
       }, error =>
