@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { MePage } from './me.page';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -23,4 +24,4 @@ const routes: Routes = [
   ],
   declarations: [MePage]
 })
-export class MePageModule {}
+export class MePageModule { }

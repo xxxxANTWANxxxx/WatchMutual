@@ -8,8 +8,8 @@
 <ion-content>
   <div class="wrapper">
     <div class="item">
-      <img src="../../assets/pic_1.jpg"/>
-      <span class="caption">First Last</span>
+      <img src="../../assets/pic_1.jpg" />
+      <span class="caption">{{info.firstName + " " + info.lastName}}</span>
     </div>
     <div class="post">
       <ion-button>Message</ion-button>
@@ -19,17 +19,17 @@
     </div>
   </div>
 
-      <div class="post">
-      <p>this is my bio. Shrek is the greatest anime ever!!! Shrek is love. Shrek is life. idk</p>
-      
-    </div>
+  <div class="post">
+    <p>{{info.bio}}</p>
+
+  </div>
+
 
 
   <ion-button>64 Posts</ion-button>
   <ion-button>1024 Comments</ion-button>
   <ion-button expand="full">View List</ion-button>
-  <ion-button expand="full" type="button" class="ion-no-margin"(click)="goToSettings()">Settings</ion-button>
+  <ion-button expand="full" type="button" class="ion-no-margin" (click)="goToSettings()">Settings</ion-button>
 
 
 </ion-content>
-
