@@ -65,7 +65,7 @@ export class MePage implements OnInit
       {
 
         //console.log(data); seee data
-        this.info = data;
+        this.info = data['results'];
 
       }, error =>
         {

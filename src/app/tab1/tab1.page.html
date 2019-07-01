@@ -21,18 +21,25 @@
   <ion-content>
     <ion-card class="welcome-card">
       <ion-card-header>
-        <ion-card-title>Good Afternoon, {{item?.user?.firstName + ' ' + item?.user?.lastName}}</ion-card-title>
+        <ion-card-title>Good Afternoon, {{item?.firstName + ' ' + item?.lastName}}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <p>What's on, and what are your friends saying?</p>
       </ion-card-content>
     </ion-card>
+    <!---------------------------------------------------------------------------------------------------------->
+    <ion-card *ngFor="let item of items">
 
-    <ion-list>
-      <!--<ion-item *ngFor="let item of items">{{item?.post}}{{item?.post}}</ion-item>-->
-      <ion-item *ngFor="let item of items">{{item?.user?.firstName + ' ' + item?.user?.lastName+': ' +item?.post }}
-      </ion-item>
-    </ion-list>
+      <div class="item">
+        <ion-avatar><img src="../../assets/pic_1.jpg" /></ion-avatar>
+      </div>
+      <h6 class="name">{{item?.user?.firstName + ' ' + item?.user?.lastName }}</h6>
+
+      <div class="footer">
+        <h4>{{item?.post}}</h4>
+      </div>
+
+    </ion-card>
 
     <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
       <ion-infinite-scroll-content loadingSpinner="bubbles">

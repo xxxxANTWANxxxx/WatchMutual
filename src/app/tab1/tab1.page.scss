@@ -2,3 +2,18 @@
   max-height: 35vh;
   overflow: hidden;
 }
+
+.name {  display: inline-block; 
+  text-align: left;
+} 
+.post {float: right}
+
+div.item {
+    vertical-align: bottom;
+    display: inline-block;
+    width: 60px;
+}
+.footer {
+  display: block;
+
+}

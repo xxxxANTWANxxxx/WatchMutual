@@ -28,16 +28,20 @@ export class Tab1Page implements OnInit
   private post: string;
   private id: number;
   private user: object;
+  private firstName: string;//name
+  private lastName: string;//name
 
 
+
+  //public item: object = null;//name***1***
+  public items = [];//posts
   public allData = [];
-  public items = [];
 
 
   constructor(private http: HttpClient, private navCtrl: NavController, private router: Router, public alertController: AlertController) { }
 
 
-  ionViewWillEnter()
+  ionViewDidEnter()
   {
     this.loadPosts();
   }
@@ -56,7 +60,9 @@ export class Tab1Page implements OnInit
 
       "Post": this.post,
       "id": this.id,
-      "user": this.user
+      "user": this.user,
+      "firstName": this.firstName,//name  
+      "lastName": this.lastName//name
 
 
     }
@@ -65,7 +71,9 @@ export class Tab1Page implements OnInit
     this.http.post("http://localhost:4200/tabs/tab1", postData, httpOptions)
       .subscribe(tdata =>
       {
-        this.allData = tdata['presults'];
+        //this.item = tdata['results'];//name***2***
+        this.allData = tdata['presults'];//posts
+
         this.addMoreItems()
       }, error =>
         {
@@ -79,9 +87,9 @@ export class Tab1Page implements OnInit
 
     for (let i = this.num; i < this.num + 12; i++)
     {
-      if (i == this.allData.length)
+      if (i >= this.allData.length)
         break
-      this.items.push(this.allData[i]);
+      this.items.push(this.allData[i]);//comment out for name***3***
       //console.log(this.allData[i])
     }
     this.num += 12;
@@ -115,7 +123,8 @@ export class Tab1Page implements OnInit
 
   clickEvent()
   {
-    this.router.navigateByUrl('stickers');
+    //this.router.navigateByUrl('stickers');
+    console.log(this.allData)
   }
 
 
