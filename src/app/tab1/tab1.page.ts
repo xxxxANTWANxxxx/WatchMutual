@@ -1,7 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Injectable } from '@angular/core';
 import { NavController, AlertController, IonInfiniteScroll } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+
 
 @Component({
   selector: 'app-tab1',
@@ -9,51 +11,30 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['tab1.page.scss']
 })
 
-export class Tab1Page
+export class Tab1Page implements OnInit
 {
+
+  public num = 0
+
+  ngOnInit()
+  {
+    //this.addMoreItems()
+  }
+
 
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
-  @ViewChild('email')
+  @ViewChild('poststuff')
   private post: string;
+  private id: number;
+  private user: object;
 
-  constructor(private http: HttpClient, private navCtrl: NavController, private router: Router, public alertController: AlertController)
-  {
-    this.addMoreItems();
-  }
 
-  public tpost: object = null;
+  public allData = [];
+  public items = [];
 
-  items = [];
 
-  addMoreItems()
-  {
-    for (let i = 0; i < 10; i++)
-      this.items.push(this.tpost)
-
-  }
-
-  loadData(event)
-  {
-    setTimeout(() =>
-    {
-      console.log('Done');
-      this.addMoreItems();
-      event.target.complete();
-
-      // App logic to determine if all data is loaded
-      // and disable the infinite scroll
-      //if (data.length == 1000)
-      //{
-      //  event.target.disabled = true;
-      //}
-    }, 300);
-  }
-
-  toggleInfiniteScroll()
-  {
-    this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
-  }
+  constructor(private http: HttpClient, private navCtrl: NavController, private router: Router, public alertController: AlertController) { }
 
 
   ionViewWillEnter()
@@ -73,35 +54,69 @@ export class Tab1Page
 
     let postData = {
 
-      "pPost": this.post,
+      "Post": this.post,
+      "id": this.id,
+      "user": this.user
+
 
     }
 
 
-
-
-    //-----------------here
     this.http.post("http://localhost:4200/tabs/tab1", postData, httpOptions)
-      .subscribe(pdata =>
+      .subscribe(tdata =>
       {
-        console.log("usingpostfind")
-        //console.log(pdata['post']); //seee data
-        this.tpost = pdata;
-
+        this.allData = tdata['presults'];
+        this.addMoreItems()
       }, error =>
         {
           console.log('failure')
         });
 
-    // const info: string = data['firstName'];
-  }
-  ;
+  };
 
+  addMoreItems()
+  {
+
+    for (let i = this.num; i < this.num + 12; i++)
+    {
+      if (i == this.allData.length)
+        break
+      this.items.push(this.allData[i]);
+      //console.log(this.allData[i])
+    }
+    this.num += 12;
+
+
+  }
+
+  loadData(event)
+  {
+    setTimeout(() =>
+    {
+      //console.log('Done');
+      this.addMoreItems();
+      event.target.complete();
+
+      //App logic to determine if all data is loaded
+      //and disable the infinite scroll
+      if (this.num > this.allData.length)
+      {
+        event.target.disabled = true;
+      }
+
+    }, 1000);
+  }
+
+  toggleInfiniteScroll()
+  {
+    this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
+  }
 
 
   clickEvent()
   {
-    console.log(this.tpost);
+    this.router.navigateByUrl('stickers');
   }
+
 
 }

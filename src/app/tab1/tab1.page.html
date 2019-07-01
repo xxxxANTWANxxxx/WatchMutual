@@ -21,7 +21,7 @@
   <ion-content>
     <ion-card class="welcome-card">
       <ion-card-header>
-        <ion-card-title>Good Afternoon, {{info?.firstName}}</ion-card-title>
+        <ion-card-title>Good Afternoon, {{item?.user?.firstName + ' ' + item?.user?.lastName}}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <p>What's on, and what are your friends saying?</p>
@@ -29,8 +29,9 @@
     </ion-card>
 
     <ion-list>
-
-      <ion-item *ngFor="let item of items">{{tpost?.post}}</ion-item>
+      <!--<ion-item *ngFor="let item of items">{{item?.post}}{{item?.post}}</ion-item>-->
+      <ion-item *ngFor="let item of items">{{item?.user?.firstName + ' ' + item?.user?.lastName+': ' +item?.post }}
+      </ion-item>
     </ion-list>
 
     <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
