@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Injectable } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavController, AlertController, IonInfiniteScroll } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -18,7 +18,7 @@ export class Tab1Page implements OnInit
 
   ngOnInit()
   {
-    //this.addMoreItems()
+
   }
 
 
@@ -28,17 +28,18 @@ export class Tab1Page implements OnInit
   private post: string;
   private id: number;
   private user: object;
-  private firstName: string;//name
-  private lastName: string;//name
+
+  @ViewChild('name')
+  private firstName: string;
+  private lastName: string;
 
 
-
-  //public item: object = null;//name***1***
   public items = [];//posts
   public allData = [];
+  public info: object = null;
 
 
-  constructor(private http: HttpClient, private navCtrl: NavController, private router: Router, public alertController: AlertController) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
 
   ionViewDidEnter()
@@ -61,8 +62,8 @@ export class Tab1Page implements OnInit
       "Post": this.post,
       "id": this.id,
       "user": this.user,
-      "firstName": this.firstName,//name  
-      "lastName": this.lastName//name
+      "firstName": this.firstName,
+      "lastName": this.lastName
 
 
     }
@@ -71,9 +72,8 @@ export class Tab1Page implements OnInit
     this.http.post("http://localhost:4200/tabs/tab1", postData, httpOptions)
       .subscribe(tdata =>
       {
-        //this.item = tdata['results'];//name***2***
-        this.allData = tdata['presults'];//posts
-
+        this.allData = tdata['presults'];
+        this.info = tdata['results'];
         this.addMoreItems()
       }, error =>
         {
@@ -89,7 +89,7 @@ export class Tab1Page implements OnInit
     {
       if (i >= this.allData.length)
         break
-      this.items.push(this.allData[i]);//comment out for name***3***
+      this.items.push(this.allData[i]);
       //console.log(this.allData[i])
     }
     this.num += 12;
@@ -123,8 +123,8 @@ export class Tab1Page implements OnInit
 
   clickEvent()
   {
-    //this.router.navigateByUrl('stickers');
-    console.log(this.allData)
+    this.router.navigateByUrl('stickers');
+    //console.log(this.allData)
   }
 
 

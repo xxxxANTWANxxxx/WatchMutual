@@ -1,71 +1,32 @@
-
-
-    <!--><ion-content fullscreen>
-      <form onsubmit="processForm(event)">
-        <ion-list lines="full" class="ion-no-margin ion-no-padding">
-          <ion-item>
-            <ion-label position="stacked">First Name <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required type="text" oninput="handleFirstNameValue(event)"></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label position="stacked">Last Name <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label position="stacked">Address</ion-label>
-            <ion-input placeholder="Address Line 1"></ion-input>
-            <ion-input placeholder="Address Line 2"></ion-input>
-            <ion-input placeholder="City"></ion-input>
-            <ion-input placeholder="State"></ion-input>
-            <ion-input placeholder="Zip Code"></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label position="stacked">Notes</ion-label>
-            <ion-textarea></ion-textarea>
-          </ion-item>
-        </ion-list>
-
-        <div class="ion-padding">
-          <ion-button expand="block" type="submit" class="ion-no-margin">Create account</ion-button>
-        </div>
-      </form>
-    </ion-content>
-    <ion-alert-controller></ion-alert-controller>-->
-
-
-  
-
-    <ion-header translucent>
-      <ion-toolbar>
-        <ion-title>WatchMutual</ion-title>
-      </ion-toolbar>
-    </ion-header>
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>WatchMutual</ion-title>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content padding>
-    <form #loginForm="ngForm" (ngSubmit)="loginClicked()" autocomplete="off">
+  <form #loginForm="ngForm" (ngSubmit)="loginClicked()" autocomplete="off">
 
-            <ion-list>
-              <ion-item>
-                <ion-label position="stacked">Email <ion-text color="danger">*</ion-text></ion-label>
-                <ion-input placeholder="Email" name="email" id="loginField"
-                           type="text" required [(ngModel)]="email" ></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label position="stacked">Password <ion-text color="danger">*</ion-text></ion-label>
-                <ion-input placeholder="Password" name="password" id="passwordField"
-                           type="password" required [(ngModel)]="password"></ion-input>
-              </ion-item>
-            </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Email <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input placeholder="Email" name="email" id="loginField" type="text" required [(ngModel)]="email">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Password <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input placeholder="Password" name="password" id="passwordField" type="password" required
+          [(ngModel)]="password"></ion-input>
+      </ion-item>
+    </ion-list>
 
-            <ion-button expand="block" type="submit" class="ion-no-margin"[disabled]="!loginForm.form.valid">Log In</ion-button>
-            <p align=center>or</p>
-            <ion-button expand="block" type="button" class="ion-no-margin"(click)="createAccount()">Create an Account</ion-button>
+    <ion-button expand="block" type="submit" class="ion-no-margin" [disabled]="!loginForm.form.valid">Log In
+    </ion-button>
+    <p align=center>or</p>
+    <ion-button expand="block" type="button" class="ion-no-margin" (click)="createAccount()">Create an Account
+    </ion-button>
 
-      </form>
+  </form>
 </ion-content>
-
-
-

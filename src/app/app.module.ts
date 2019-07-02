@@ -9,18 +9,16 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { OAuthService, UrlHelperService, OAuthLogger, OAuthModule } from 'angular-oauth2-oidc';
+import { OAuthService, UrlHelperService, OAuthModule } from 'angular-oauth2-oidc';
 import { LoginPage } from '../app/login/login.page';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
-import { RouterModule } from '@angular/router';
 import { LoginPageModule } from './login/login.module';
 
 
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [ LoginPage ],
+  entryComponents: [LoginPage],
   imports: [BrowserModule, IonicModule.forRoot(), OAuthModule.forRoot(), AppRoutingModule, FormsModule, HttpClientModule, LoginPageModule],
   providers: [
     UrlHelperService,
@@ -31,4 +29,4 @@ import { LoginPageModule } from './login/login.module';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

@@ -4,6 +4,9 @@
       Trending
     </ion-title>
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar showCancelButton="always" [(ngModel)]="searchInput" (keyup.enter)="onInput($event)"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>

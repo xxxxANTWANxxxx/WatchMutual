@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NavController, AlertController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -15,12 +15,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class LoginPage implements OnInit
 {
 
-  @ViewChild('email') email: any;
-  private username: string;
+  @ViewChild('login')
+  private email: string;
   private password: string;
   private error: string;
 
-  constructor(private http: HttpClient, private navCtrl: NavController, private router: Router, public alertController: AlertController)
+  constructor(private http: HttpClient, private router: Router, public alertController: AlertController)
   {
   }
 
@@ -45,14 +45,14 @@ export class LoginPage implements OnInit
     this.http.post("http://localhost:4200/login", postData, httpOptions)
       .subscribe(data =>
       {
-        //console.log("this was Successful");
+        //console.log(data);
         if (data['Status']) this.login();
-        else this.presentAlert();
+        else { this.presentAlert(); }
       }, error =>
-      {
-        console.log(error)
+        {
+          console.log(error)
 
-      });
+        });
   }
 
   login(): void

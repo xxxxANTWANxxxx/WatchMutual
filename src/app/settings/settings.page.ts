@@ -7,14 +7,17 @@ import { Router } from '@angular/router';
   templateUrl: './settings.page.html',
   styleUrls: ['./settings.page.scss'],
 })
-export class SettingsPage implements OnInit {
+export class SettingsPage implements OnInit
+{
 
   constructor(public router: Router, public oauthService: OAuthService) { }
 
-  ngOnInit() {
+  ngOnInit()
+  {
   }
 
-  logout() {
+  logout()
+  {
     this.oauthService.logOut(true);
     this.router.navigateByUrl('/login');
   }

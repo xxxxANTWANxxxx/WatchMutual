@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NavController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -15,16 +14,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class MePage implements OnInit
 {
 
-  @ViewChild('email')
-  email: any;
+  @ViewChild('meinfo')
   private first: string;
   private last: string;
   private bio: string;
   private error: string;
 
-
-
-  constructor(private http: HttpClient, private navCtrl: NavController, private router: Router, public alertController: AlertController) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
 
   public info: object = null;
