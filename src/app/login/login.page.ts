@@ -18,6 +18,7 @@ export class LoginPage implements OnInit
   @ViewChild('login')
   private email: string;
   private password: string;
+  private uid: number;
   private error: string;
 
   constructor(private http: HttpClient, private router: Router, public alertController: AlertController)
@@ -39,13 +40,13 @@ export class LoginPage implements OnInit
 
     let postData = {
       "username": this.email,
-      "password": this.password
+      "password": this.password,
+      "uid": this.uid
     }
 
     this.http.post("http://localhost:4200/login", postData, httpOptions)
       .subscribe(data =>
       {
-        //console.log(data);
         if (data['Status']) this.login();
         else { this.presentAlert(); }
       }, error =>

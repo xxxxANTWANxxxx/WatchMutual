@@ -6,12 +6,24 @@
   </ion-toolbar>
   <ion-toolbar>
     <ion-searchbar showCancelButton="always" [(ngModel)]="searchInput" (keyup.enter)="onInput($event)"></ion-searchbar>
+    <ion-button (click)="clickClicked()">
+      press me!
+    </ion-button>
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content>
+  <!-- 
+<ion-item tappable (click)="toggleSection(i)" [ngClass]="{'section-active': item.open,'section': !item.open}">
+      <ion-icon slot=" start" name="arrow-forward" *ngIf="!item.open">
+      </ion-icon>
+      <ion-icon slot="start" name="arrow-down" *ngIf="item.open"></ion-icon>
+</ion-item>
+  -->
+
+
   <ion-card class="welcome-card">
-    <ion-img src="/assets/pic_1.jpg"></ion-img>
     <ion-card-header>
       <ion-card-subtitle>What's New!</ion-card-subtitle>
       <ion-card-title>See what everyone is talking about</ion-card-title>
@@ -20,4 +32,28 @@
       <p>This page will host trending shows and topics.</p>
     </ion-card-content>
   </ion-card>
+
+  <ion-card *ngFor="let item of items">
+    <div class="item">
+      <ion-avatar slot="start"><img src="../../assets/pic_1.jpg" /></ion-avatar>
+    </div>
+    <h6 class="name">{{item?.list?.user?.firstName + '\'s "' + item?.list?.listName+ '"'}}</h6>
+
+    <div class="footer">
+      <h4>
+        1. <i>{{item?.list?.title1}}</i><br>2. <i>{{item?.list?.title2}}</i><br>3. <i>{{item?.list?.title3}}</i><br>4.
+        <i>{{item?.list?.title4}}</i><br>5. <i>{{item?.list?.title5}}</i><br>6. <i>{{item?.list?.title6}}</i><br>7.
+        <i>{{item?.list?.title7}}</i><br>8. <i>{{item?.list?.title8}}</i><br>9. <i>{{item?.list?.title9}}</i><br>10.
+        <i>{{item?.list?.title10}}</i>
+
+      </h4>
+    </div>
+
+
+  </ion-card>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

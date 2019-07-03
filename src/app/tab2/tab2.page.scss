@@ -2,3 +2,12 @@
     max-height: 50vh;
     overflow: hidden;
   }
+  div.item {
+    vertical-align: bottom;
+    display: inline-block;
+    width: 60px;
+}
+
+.name {  display: inline-block; 
+  text-align: left;
+} 

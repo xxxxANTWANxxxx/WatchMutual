@@ -19,7 +19,7 @@ import { LoginPageModule } from './login/login.module';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [LoginPage],
-  imports: [BrowserModule, IonicModule.forRoot(), OAuthModule.forRoot(), AppRoutingModule, FormsModule, HttpClientModule, LoginPageModule],
+  imports: [BrowserModule, IonicModule.forRoot(), OAuthModule.forRoot(), AppRoutingModule, FormsModule, HttpClientModule, LoginPageModule, IonicModule],
   providers: [
     UrlHelperService,
     OAuthService,

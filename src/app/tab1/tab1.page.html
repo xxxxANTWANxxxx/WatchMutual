@@ -4,11 +4,13 @@
       Home
     </ion-title>
 
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content (click)='clickEvent()'>
-  <!--  <div *ngIf="givenName">
+
+<!--(click)='clickEvent()'-->
+<!--  <div *ngIf="givenName">
     <hr>
     <p>You are logged in as: <b>{{ givenName }}</b></p>
     <div class="claims">
@@ -18,33 +20,59 @@
   </div>-->
 
 
-  <ion-content>
-    <ion-card class="welcome-card">
-      <ion-card-header>
-        <ion-card-title>Good Afternoon, {{info?.firstName + ' ' + info?.lastName}}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>What's on, and what are your friends saying?</p>
-      </ion-card-content>
-    </ion-card>
-    <!---------------------------------------------------------------------------------------------------------->
-    <ion-card *ngFor="let item of items">
+<ion-content>
 
-      <div class="item">
-        <ion-avatar><img src="../../assets/pic_1.jpg" /></ion-avatar>
-      </div>
-      <h6 class="name">{{item?.user?.firstName + ' ' + item?.user?.lastName }}</h6>
+  <ion-refresher slot="relative" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
 
-      <div class="footer">
-        <h4>{{item?.post}}</h4>
-      </div>
 
-    </ion-card>
+  <ion-card class="welcome-card">
+    <ion-card-header>
+      <ion-card-title>Good Afternoon, {{info?.firstName + ' ' + info?.lastName}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>What's on, and what are your friends saying?</p>
+    </ion-card-content>
+  </ion-card>
+  <!---------------------------------------------------------------------------------------------------------->
+  <ion-card *ngFor="let item of items">
 
-    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
-      <ion-infinite-scroll-content loadingSpinner="bubbles">
-      </ion-infinite-scroll-content>
-    </ion-infinite-scroll>
-  </ion-content>
+    <div class="item">
+      <ion-avatar slot="start"><img src="../../assets/pic_1.jpg" /></ion-avatar>
+    </div>
+    <h6 class="name">{{item?.post?.user?.firstName + ' ' + item?.post?.user?.lastName}}</h6>
 
+    <div class="footer">
+      <h4>{{item?.post.post}}</h4>
+    </div>
+
+  </ion-card>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
+<script>
+  var acc = document.getElementsByClassName("accordion");
+  var i;
+
+  for (i = 0; i < acc.length; i++)
+  {
+    acc[i].addEventListener("click", function ()
+    {
+      this.classList.toggle("active");
+      var panel = this.nextElementSibling;
+      if (panel.style.display === "block")
+      {
+        panel.style.display = "none";
+      } else
+      {
+        panel.style.display = "block";
+      }
+    });
+  }
+</script>

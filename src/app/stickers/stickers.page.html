@@ -2,9 +2,14 @@
   <ion-toolbar>
     <ion-title>stickers</ion-title>
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content (click) = 'clickEvent()'>
+<ion-content (click)='clickEvent()'>
   <ion-card>
     <ion-img src="/assets/pic_1.jpg"></ion-img>
     <ion-card-header>
@@ -16,4 +21,3 @@
     </ion-card-content>
   </ion-card>
 </ion-content>
-

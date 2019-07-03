@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NavController, AlertController, IonInfiniteScroll } from '@ionic/angular';
+import { IonInfiniteScroll } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -14,7 +14,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class Tab1Page implements OnInit
 {
 
-  public num = 0
+  private num = 0
 
   ngOnInit()
   {
@@ -24,25 +24,20 @@ export class Tab1Page implements OnInit
 
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
-  @ViewChild('poststuff')
   private post: string;
-  private id: number;
-  private user: object;
-
-  @ViewChild('name')
-  private firstName: string;
-  private lastName: string;
+  //private firstName: string;
+  //private lastName: string;
 
 
-  public items = [];//posts
-  public allData = [];
-  public info: object = null;
+  private items = [];//posts
+  private allData = [];
+  private info: object = null;
 
 
   constructor(private http: HttpClient, private router: Router) { }
 
 
-  ionViewDidEnter()
+  ionViewWillEnter()
   {
     this.loadPosts();
   }
@@ -57,19 +52,7 @@ export class Tab1Page implements OnInit
     };
 
 
-    let postData = {
-
-      "Post": this.post,
-      "id": this.id,
-      "user": this.user,
-      "firstName": this.firstName,
-      "lastName": this.lastName
-
-
-    }
-
-
-    this.http.post("http://localhost:4200/tabs/tab1", postData, httpOptions)
+    this.http.post("http://localhost:4200/tabs/tab1", httpOptions)
       .subscribe(tdata =>
       {
         this.allData = tdata['presults'];
@@ -89,6 +72,7 @@ export class Tab1Page implements OnInit
     {
       if (i >= this.allData.length)
         break
+      //console.log(this.allData.id[i])
       this.items.push(this.allData[i]);
       //console.log(this.allData[i])
     }
@@ -120,11 +104,23 @@ export class Tab1Page implements OnInit
     this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
   }
 
-
-  clickEvent()
+  doRefresh(event)
   {
-    this.router.navigateByUrl('stickers');
-    //console.log(this.allData)
+    console.log('Begin async operation');
+    this.loadPosts();
+    setTimeout(() =>
+    {
+
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+  }
+
+
+  clickEvent(): void
+  {
+    //this.router.navigateByUrl('stickers');
+    console.log(this.allData)
   }
 
 
