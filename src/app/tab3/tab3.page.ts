@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonInfiniteScroll } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { IonInfiniteScroll, NavController } from '@ionic/angular';
+import { Router, NavigationExtras } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { DisplayUserPage } from '../display-user/display-user.page';
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
@@ -15,6 +16,7 @@ export class Tab3Page
   private id: number;
   private firstName: string;
   private lastName: string;
+  //private lookUpId: number;
 
 
   public users = [];//posts
@@ -22,7 +24,7 @@ export class Tab3Page
   //public info: object = null;
 
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, public navCtrl: NavController) { }
 
 
   ionViewWillEnter()
@@ -129,9 +131,17 @@ export class Tab3Page
       });
     });
   }*/
-  viewProfile(): void
+
+
+  viewProfile(i): void
   {
-    this.router.navigateByUrl('stickers');
+    let navigationExtras: NavigationExtras = {
+      state: {
+        id: i
+      }
+    };
+
+    this.router.navigate(['display-user'], navigationExtras);
   }
 
 }

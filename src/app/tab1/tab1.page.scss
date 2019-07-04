@@ -6,18 +6,19 @@
   max-height: 35vh;
   overflow: hidden;
 }
+.footer {
+  display: block;
 
+}
 .name {  display: inline-block; 
   text-align: left;
 } 
-.post {float: right}
-
 div.item {
     vertical-align: bottom;
     display: inline-block;
     width: 60px;
 }
-.footer {
-  display: block;
+.post {float: right}
 
-}
+
+

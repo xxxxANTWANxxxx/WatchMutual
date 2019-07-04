@@ -31,10 +31,24 @@
 
   <ion-card class="welcome-card">
     <ion-card-header>
-      <ion-card-title>Good Afternoon, {{info?.firstName + ' ' + info?.lastName}}</ion-card-title>
+      <ion-card-title>Good Afternoon, {{info?.firstName}}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <p>What's on, and what are your friends saying?</p>
+      <br>
+      <p>Have somthing to say?</p>
+      <form #loginForm="ngForm" autocomplete="off">
+        <ion-item>
+          <ion-input placeholder="limit 100 characters" name="post" id="postfeild" type=" text" required
+            [(ngModel)]="post">
+          </ion-input>
+        </ion-item>
+        <ion-button expand="block" type="submit" class="ion-no-margin" [disabled]="!loginForm.form.valid"
+          (click)="postClicked()">Post
+        </ion-button>
+        <ion-button expand=" block" type="submit">Refresh
+        </ion-button>
+      </form>
     </ion-card-content>
   </ion-card>
   <!---------------------------------------------------------------------------------------------------------->
@@ -43,6 +57,7 @@
     <div class="item">
       <ion-avatar slot="start"><img src="../../assets/pic_1.jpg" /></ion-avatar>
     </div>
+
     <h6 class="name">{{item?.post?.user?.firstName + ' ' + item?.post?.user?.lastName}}</h6>
 
     <div class="footer">

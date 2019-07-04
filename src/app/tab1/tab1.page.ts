@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonInfiniteScroll } from '@ionic/angular';
+import { IonInfiniteScroll, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -18,28 +18,57 @@ export class Tab1Page implements OnInit
 
   ngOnInit()
   {
-
+    this.toggleInfiniteScroll();
   }
 
 
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
-  private post: string;
+  //private post: string;
   //private firstName: string;
   //private lastName: string;
 
-
+  private post: string;
   private items = [];//posts
   private allData = [];
   private info: object = null;
 
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, public alertController: AlertController) { }
 
 
   ionViewWillEnter()
   {
+    this.num = 0;
+    this.items = [];
     this.loadPosts();
+    this.toggleInfiniteScroll()
+  }
+
+  postClicked()
+  {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      })
+    };
+
+    let postData = {
+      "post": this.post,
+
+    }
+
+    this.http.post("http://localhost:4200/tabs/tab1/post", postData, httpOptions)
+      .subscribe(data =>
+      {
+        this.presentAlert();
+        this.post = null;
+      }, error =>
+        {
+          console.log(error)
+
+        });
   }
 
   loadPosts()
@@ -123,5 +152,20 @@ export class Tab1Page implements OnInit
     console.log(this.allData)
   }
 
+  async presentAlert()
+  {
+    const alert = await this.alertController.create({
+      header: 'Success!',
+      message: 'Your Post has been made, please refresh the page to see it..',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  refresh(): void
+  {
+    window.location.reload();
+  }
 
 }

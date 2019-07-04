@@ -4,15 +4,11 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
-  selector: 'app-me',
-  templateUrl: './me.page.html',
-  styleUrls: ['./me.page.scss'],
+  selector: 'app-display-user',
+  templateUrl: './display-user.page.html',
+  styleUrls: ['./display-user.page.scss'],
 })
-
-
-
-
-export class MePage implements OnInit
+export class DisplayUserPage implements OnInit
 {
 
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
@@ -21,30 +17,26 @@ export class MePage implements OnInit
   private num = 0
   private items = [];//posts
   private allData = [];
-  private first: string;
-  private last: string;
-  private bio: string;
-  private error: string;
+  private lookUpId: number;
 
-  constructor(private http: HttpClient, private router: Router) { }
+
+  constructor(private http: HttpClient, private router: Router)
+  {
+
+    this.lookUpId = this.router.getCurrentNavigation().extras.state.id;
+  }
 
 
   public info: object = null;
 
   ngOnInit()
   {
-    this.toggleInfiniteScroll();
+
   }
 
   ionViewWillEnter()
   {
-    console.log("new load")
-    this.items = [];
-    this.toggleInfiniteScroll();
-    this.num = 0;
     this.loadUser();
-
-
   }
 
 
@@ -60,13 +52,11 @@ export class MePage implements OnInit
 
     let postData = {
 
-      "firstName": this.first,
-      "lastName": this.last,
-      "bio": this.bio,
+      "id": this.lookUpId,
     }
 
 
-    this.http.post("http://localhost:4200/me", postData, httpOptions)
+    this.http.post("http://localhost:4200/display-user", postData, httpOptions)
       .subscribe(data =>
       {
 
@@ -123,10 +113,4 @@ export class MePage implements OnInit
     this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
   }
 
-
-
-  goToSettings(): void
-  {
-    this.router.navigateByUrl('settings');
-  }
 }

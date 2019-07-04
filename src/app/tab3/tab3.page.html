@@ -27,7 +27,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item button *ngFor="let user of users" (click)='viewProfile()'>
+    <ion-item button *ngFor="let user of users" (click)='viewProfile(user?.user?.uid)'>
       <ion-avatar>
         <img src="https://i.ytimg.com/vi/9snfz2sQMFQ/maxresdefault.jpg">
       </ion-avatar>

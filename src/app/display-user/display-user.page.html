@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Me</ion-title>
+    <ion-buttons slot="start">
+      <ion-title class="ion-text-center">Me</ion-title>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -13,9 +16,9 @@
     <p>{{info?.bio}}</p>
   </div>
 
-  <ion-button expand="block">View Your Lists</ion-button>
-  <ion-button expand="block" type="button" (click)="goToSettings()">Settings</ion-button>
-  <ion-card-title class="aligncenter">Your Posts</ion-card-title>
+  <ion-button expand="block">View {{info?.firstName}}'s Lists</ion-button>
+  <ion-card-title class="aligncenter">{{info?.firstName}}'s Posts</ion-card-title>
+
 
   <ion-card *ngFor="let item of items">
 
