@@ -5,11 +5,12 @@
     </ion-title>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-searchbar placeholder="find a friend " (ionInput)=handleInput(event)></ion-searchbar>
+    <ion-searchbar placeholder="find a friend " (ionInput)=searchthis($event)></ion-searchbar>
   </ion-toolbar>
   <ion-toolbar>
+    <ion-button *ngIf="!toggled" (click)="toggle()" name="search">Add friends</ion-button>
     <ion-title>
-      Friends
+      Your Friends
     </ion-title>
   </ion-toolbar>
 
@@ -26,13 +27,25 @@
 </ion-content>-->
 
 <ion-content>
+
   <ion-list>
-    <ion-item button *ngFor="let user of users" (click)='viewProfile(user?.user?.uid)'>
+
+    <ion-item button *ngFor="let user of search2" (click)='viewProfile(user?.user?.uid)'>
       <ion-avatar>
         <img src="https://i.ytimg.com/vi/9snfz2sQMFQ/maxresdefault.jpg">
       </ion-avatar>
       <ion-card-title class="ion-padding">{{user?.user?.firstName + ' ' + user?.user?.lastName}}</ion-card-title>
     </ion-item>
-
+  </ion-list>
+  <ion-title position="absolute">
+    People
+  </ion-title>
+  <ion-list>
+    <ion-item button *ngFor="let s of search" (click)='viewProfile(s?.uid)'>
+      <ion-avatar>
+        <img src="https://i.ytimg.com/vi/9snfz2sQMFQ/maxresdefault.jpg">
+      </ion-avatar>
+      <ion-card-title class="ion-padding">{{s?.firstName + ' ' + s?.lastName}}</ion-card-title>
+    </ion-item>
   </ion-list>
 </ion-content>

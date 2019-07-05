@@ -38,7 +38,6 @@ export class MePage implements OnInit
 
   ionViewWillEnter()
   {
-    console.log("new load")
     this.items = [];
     this.toggleInfiniteScroll();
     this.num = 0;

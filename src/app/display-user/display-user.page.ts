@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonInfiniteScroll } from '@ionic/angular';
+import { IonInfiniteScroll, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -20,7 +20,7 @@ export class DisplayUserPage implements OnInit
   private lookUpId: number;
 
 
-  constructor(private http: HttpClient, private router: Router)
+  constructor(private http: HttpClient, private router: Router, public alertController: AlertController)
   {
 
     this.lookUpId = this.router.getCurrentNavigation().extras.state.id;
@@ -74,6 +74,36 @@ export class DisplayUserPage implements OnInit
   }
 
 
+  sendfriend()
+  {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      })
+    };
+
+    let postData = {
+
+      "id": this.lookUpId,
+    }
+
+
+
+    this.http.post("http://localhost:4200/send-friend-request", postData, httpOptions)
+      .subscribe(data =>
+      {
+        if (data['created'])
+        { this.becameFriends(); }
+        else { this.alreadyFriends(); }
+      }, error =>
+        {
+          console.log('failure')
+        });
+
+    // const info: string = data['firstName'];
+  }
+
   addMoreItems()
   {
 
@@ -111,6 +141,27 @@ export class DisplayUserPage implements OnInit
   toggleInfiniteScroll()
   {
     this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
+  }
+
+  async becameFriends()
+  {
+    const alert = await this.alertController.create({
+      header: 'Success!',
+      message: 'You Are Now Friends.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+  async alreadyFriends()
+  {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message: "You're Already Friends With This Person",
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
 }
