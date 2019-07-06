@@ -11,8 +11,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class SettingsPage implements OnInit
 {
+  public userType: string;
 
-  constructor(public router: Router, public oauthService: OAuthService, private http: HttpClient) { }
+
+
+  constructor(public router: Router, public oauthService: OAuthService, private http: HttpClient)
+  {
+
+    this.userType = this.router.getCurrentNavigation().extras.state.userType;
+
+  }
 
   ngOnInit()
   {
@@ -30,6 +38,10 @@ export class SettingsPage implements OnInit
     this.http.post("http://localhost:4200/settings", httpOptions)
       .subscribe();*/
     this.router.navigateByUrl('/login');
+  }
+  admin()
+  {
+    this.router.navigateByUrl('/admin');
   }
 
 }

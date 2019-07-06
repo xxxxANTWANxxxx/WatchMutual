@@ -14,17 +14,22 @@ import { Router } from '@angular/router';
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
-export class AppComponent {
+export class AppComponent
+{
   rootPage: any = TabsPage;
 
-  constructor( private platform: Platform, private splashScreen: SplashScreen, private statusBar: StatusBar, private oauthService: OAuthService, private router: Router ) {
-    if(oauthService.hasValidIdToken()) {
+  constructor(private platform: Platform, private splashScreen: SplashScreen, private statusBar: StatusBar, private oauthService: OAuthService, private router: Router)
+  {
+    if (oauthService.hasValidIdToken())
+    {
       this.router.navigateByUrl('/tab1');
-    } else {
+    } else
+    {
       this.router.navigateByUrl('/login');
     }
 
-    platform.ready().then(() => {
+    platform.ready().then(() =>
+    {
       statusBar.styleDefault();
       splashScreen.hide();
     });

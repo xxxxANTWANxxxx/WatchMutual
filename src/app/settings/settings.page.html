@@ -6,5 +6,10 @@
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen>
-  <ion-button expand="full" type="button" class="ion-no-margin" (click)="logout()">Log Out</ion-button>
+  <div *ngIf="userType == 'A'">
+    <ion-button expand="full" type="button" (click)="admin()">Admin Abilities</ion-button>
+  </div>
+  <ion-button expand="full" type="button" (click)="logout()">Log Out</ion-button>
+
+
 </ion-content>

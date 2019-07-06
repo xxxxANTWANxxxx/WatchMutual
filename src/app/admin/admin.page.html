@@ -1,0 +1,112 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Admin</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="welcome-card">
+    <ion-card-header>
+      <ion-card-title>Whas Would You Like to Do?</ion-card-title>
+    </ion-card-header>
+
+  </ion-card>
+
+  <ion-list>
+    <ion-radio-group>
+      <ion-list-header>
+        <ion-label>Modify:</ion-label>
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>Users</ion-label>
+        <ion-radio slot="start" value="1" (click)="radiohandle(1)"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Posts</ion-label>
+        <ion-radio slot="start" value="2" (click)="radiohandle(2)"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Lists</ion-label>
+        <ion-radio slot="start" value="3" (click)="radiohandle(3)"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+
+  <div *ngIf="select == 1">
+    <ion-searchbar placeholder="Search People" (ionInput)=searchPeople($event)></ion-searchbar>
+    <ion-list>
+      <ion-item button *ngFor="let del of search" (click)='viewProfile(del?.uid, true)'>
+        <ion-avatar>
+          <img src="https://i.ytimg.com/vi/9snfz2sQMFQ/maxresdefault.jpg">
+        </ion-avatar>
+        <ion-card-title class="ion-padding">{{del?.firstName + ' ' + del?.lastName}}</ion-card-title>
+      </ion-item>
+    </ion-list>
+  </div>
+
+
+  <div *ngIf="select == 2">
+    <ion-searchbar placeholder="Search Posts" (ionInput)=searchPosts($event)></ion-searchbar>
+    <ion-list>
+      <ion-card *ngFor="let del of search2">
+        <ion-fab vertical="top" horizontal="end" slot="fixed">
+          <ion-fab-button color="danger" (click)="deletePost(del.pid)">
+            <ion-icon name="trash"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+        <div class="item">
+          <ion-avatar slot="start"><img src="../../assets/pic_1.jpg" /></ion-avatar>
+        </div>
+
+        <h6 class="name">{{del?.user?.firstName + ' ' + del?.user?.lastName}}</h6>
+
+        <div class="footer">
+          <h4>{{del?.post}}</h4>
+        </div>
+
+      </ion-card>
+    </ion-list>
+  </div>
+
+
+  <div *ngIf="select == 3">
+    <ion-searchbar placeholder="Search Lists" (ionInput)=searchLists($event)></ion-searchbar>
+
+    <ion-card *ngFor="let del of search3">
+      <ion-fab vertical="top" horizontal="end" slot="fixed">
+        <ion-fab-button color="danger" (click)="deleteList(del.lid)">
+          <ion-icon name="trash"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+      <div class="item">
+        <ion-avatar slot="start"><img src="../../assets/pic_1.jpg" /></ion-avatar>
+      </div>
+      <h6 class="name">{{del?.user?.firstName + '\'s "' + del?.listName+ '"'}}</h6>
+
+      <ion-list lines="none">
+
+        <ion-item>1. <i>{{del?.title1}}</i></ion-item>
+        <ion-item>2. <i>{{del?.title2}}</i></ion-item>
+        <ion-item>3. <i>{{del?.title3}}</i></ion-item>
+        <ion-item>4. <i>{{del?.title4}}</i></ion-item>
+        <ion-item>5. <i>{{del?.title5}}</i></ion-item>
+        <ion-item>6. <i>{{del?.title6}}</i></ion-item>
+        <ion-item>7. <i>{{del?.title7}}</i></ion-item>
+        <ion-item>8. <i>{{del?.title8}}</i></ion-item>
+        <ion-item>9. <i>{{del?.title9}}</i></ion-item>
+        <ion-item>10. <i>{{del?.title10}}</i></ion-item>
+
+      </ion-list>
+
+
+    </ion-card>
+  </div>
+
+
+</ion-content>

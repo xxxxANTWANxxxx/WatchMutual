@@ -33,10 +33,13 @@ export class Tab3Page
   ngOnInit()
   {
     this.loadPeople();
-    this.loadFriends();
   }
 
-  ionViewWillEnter() { }
+  ionViewWillEnter()
+  {
+    this.loadFriends();
+    this.search2 = this.users
+  }
 
   loadFriends()
   {
@@ -56,8 +59,8 @@ export class Tab3Page
       .subscribe(data =>
       {
         this.users = data['results'];
-        for (let i = 0; i < this.users.length; i++)
-          this.list.push(this.users[i].user.firstName + ' ' + this.users[i].user.lastName)
+        this.search2 = this.users
+
       }, error =>
         {
           console.log('failure')
@@ -86,7 +89,7 @@ export class Tab3Page
           this.list2.push(this.add[i].firstName + ' ' + this.add[i].lastName)
       }, error =>
         {
-          console.log('new')
+          console.log('failure')
         });
   };
 
@@ -101,6 +104,8 @@ export class Tab3Page
   {
     //this.search2 = []
     this.search = this.add
+    if (event.target.value == '')
+      this.search = []
     let serVal = event.target.value;
     if (serVal && serVal.trim() != '')
     {
@@ -134,10 +139,10 @@ export class Tab3Page
     this.router.navigate(['display-user'], navigationExtras);
   }
 
-  public toggle(): void
-  {
-    this.toggled = !this.toggled;
-  }
+  // public toggle(): void
+  // {
+  //   this.toggled = !this.toggled;
+  // }
   /*addMoreItems()
  {
 

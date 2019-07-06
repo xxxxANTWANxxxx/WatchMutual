@@ -3,8 +3,6 @@ import { IonInfiniteScroll } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DataService } from '../data.service';
-import { map } from 'rxjs/operators';
-
 
 
 @Component({
@@ -35,7 +33,10 @@ export class Tab2Page
 
   ionViewWillEnter()
   {
+    this.num = 0;
+    this.items = [];
     this.loadLists();
+    this.toggleInfiniteScroll();
   }
 
   loadLists()
@@ -77,10 +78,8 @@ export class Tab2Page
     {
       if (i >= this.allData.length)
         break
-      //console.log(this.allData.id[i])
       if (this.allData[i].list != null)
         this.items.push(this.allData[i]);
-      //console.log(this.allData[i].list)
     }
     this.num += 12;
 

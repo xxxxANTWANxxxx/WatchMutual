@@ -18,11 +18,12 @@ export class DisplayUserPage implements OnInit
   private items = [];//posts
   private allData = [];
   private lookUpId: number;
+  private adminstatus: boolean;
 
 
   constructor(private http: HttpClient, private router: Router, public alertController: AlertController)
   {
-
+    this.adminstatus = this.router.getCurrentNavigation().extras.state.admin;
     this.lookUpId = this.router.getCurrentNavigation().extras.state.id;
   }
 
@@ -162,6 +163,61 @@ export class DisplayUserPage implements OnInit
     });
 
     await alert.present();
+  }
+
+  async deleteAccount()
+  {
+    const alert = await this.alertController.create({
+      header: 'Alert',
+      subHeader: 'Please Confirm',
+      message: 'Are you sure you want to delete this account? Once this action is completed, it cannot be undone.',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+
+        }, {
+          text: 'Ok',
+          handler: () =>
+          {
+            this.deleteUser();
+          }
+        }
+      ]
+
+    });
+
+    await alert.present();
+  }
+
+  deleteUser()
+  {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      })
+    };
+
+
+    let postData = {
+
+      "id": this.lookUpId,
+    }
+
+
+    this.http.post("http://localhost:4200/delete-user", postData, httpOptions)
+      .subscribe(data =>
+      {
+        this.router.navigateByUrl('/admin');
+        console.log('Account deleted')
+
+      }, error =>
+        {
+          console.log('failure')
+        });
+
+    // const info: string = data['firstName'];
   }
 
 }

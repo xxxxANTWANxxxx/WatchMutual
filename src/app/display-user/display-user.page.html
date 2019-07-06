@@ -16,7 +16,10 @@
     <p>{{info?.bio}}</p>
   </div>
   <ion-button expand="block" (click)="sendfriend()">Add friend</ion-button>
-  <ion-button expand=" block">View {{info?.firstName}}'s Lists</ion-button>
+  <ion-button expand="block">View {{info?.firstName}}'s Lists</ion-button>
+  <div *ngIf="adminstatus == true">
+    <ion-button expand="block" (click)="deleteAccount()">Delete Account</ion-button>
+  </div>
   <ion-card-title class="aligncenter">{{info?.firstName}}'s Posts</ion-card-title>
 
 

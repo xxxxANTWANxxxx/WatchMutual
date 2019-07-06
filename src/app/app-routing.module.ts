@@ -9,7 +9,8 @@ const routes: Routes = [
   { path: 'stickers', loadChildren: './stickers/stickers.module#StickersPageModule' },
   { path: 'create-account', loadChildren: './create-account/create-account.module#CreateAccountPageModule' },
   { path: 'settings', loadChildren: './settings/settings.module#SettingsPageModule' },
-  { path: 'search-results/:id', resolve: { special: DataResolverService }, loadChildren: './search-results/search-results.module#SearchResultsPageModule' },  { path: 'display-user', loadChildren: './display-user/display-user.module#DisplayUserPageModule' }
+  { path: 'search-results/:id', resolve: { special: DataResolverService }, loadChildren: './search-results/search-results.module#SearchResultsPageModule' },  { path: 'display-user', loadChildren: './display-user/display-user.module#DisplayUserPageModule' },
+  { path: 'admin', loadChildren: './admin/admin.module#AdminPageModule' }
 
 ];
 @NgModule({

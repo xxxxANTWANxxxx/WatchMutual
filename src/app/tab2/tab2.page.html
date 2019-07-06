@@ -6,9 +6,9 @@
   </ion-toolbar>
   <ion-toolbar>
     <ion-searchbar showCancelButton="always" [(ngModel)]="searchInput" (keyup.enter)="onInput($event)"></ion-searchbar>
-    <ion-button (click)="clickClicked()">
+    <!-- <ion-button (click)="clickClicked()">
       press me!
-    </ion-button>
+    </ion-button> -->
   </ion-toolbar>
 
 </ion-header>
@@ -29,7 +29,6 @@
       <ion-card-title>See what everyone is talking about</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <p>This page will host trending shows and topics.</p>
     </ion-card-content>
   </ion-card>
 
@@ -39,15 +38,28 @@
     </div>
     <h6 class="name">{{item?.list?.user?.firstName + '\'s "' + item?.list?.listName+ '"'}}</h6>
 
-    <div class="footer">
-      <h4>
+    <ion-list lines="none">
+
+      <ion-item>1. <i>{{item?.list?.title1}}</i></ion-item>
+      <ion-item>2. <i>{{item?.list?.title2}}</i></ion-item>
+      <ion-item>3. <i>{{item?.list?.title3}}</i></ion-item>
+      <ion-item>4. <i>{{item?.list?.title4}}</i></ion-item>
+      <ion-item>5. <i>{{item?.list?.title5}}</i></ion-item>
+      <ion-item>6. <i>{{item?.list?.title6}}</i></ion-item>
+      <ion-item>7. <i>{{item?.list?.title7}}</i></ion-item>
+      <ion-item>8. <i>{{item?.list?.title8}}</i></ion-item>
+      <ion-item>9. <i>{{item?.list?.title9}}</i></ion-item>
+      <ion-item>10. <i>{{item?.list?.title10}}</i></ion-item>
+
+
+      <!-- <h4>
         1. <i>{{item?.list?.title1}}</i><br>2. <i>{{item?.list?.title2}}</i><br>3. <i>{{item?.list?.title3}}</i><br>4.
         <i>{{item?.list?.title4}}</i><br>5. <i>{{item?.list?.title5}}</i><br>6. <i>{{item?.list?.title6}}</i><br>7.
         <i>{{item?.list?.title7}}</i><br>8. <i>{{item?.list?.title8}}</i><br>9. <i>{{item?.list?.title9}}</i><br>10.
         <i>{{item?.list?.title10}}</i>
 
-      </h4>
-    </div>
+      </h4> -->
+    </ion-list>
 
 
   </ion-card>

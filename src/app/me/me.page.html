@@ -7,18 +7,25 @@
 
 <ion-content>
   <div class="aligncenter">
-    <img class="header" src="./../assets/pic_1.jpg" />
-    <!--"data:image/jpeg;base64,{{user.photo}}"-->
+    <img class="header" src="../../assets/pic_1.jpg" />
+    <!--"data:image/jpeg;base64,{{pictureURL}}"-->
     <span class="caption">{{info?.firstName + " " + info?.lastName}}</span>
     <p>{{info?.bio}}</p>
   </div>
+  <!-- <img [src]="url" height="200"> <br />
+
+  <input type='file' (change)="onSelectFile($event)"> -->
 
   <ion-button expand="block">View Your Lists</ion-button>
-  <ion-button expand="block" type="button" (click)="goToSettings()">Settings</ion-button>
+  <ion-button expand="block" type="button" (click)="goToSettings(info?.userType)">Settings</ion-button>
   <ion-card-title class="aligncenter">Your Posts</ion-card-title>
 
   <ion-card *ngFor="let item of items">
-
+    <ion-fab vertical="top" horizontal="end" slot="fixed">
+      <ion-fab-button color="danger" (click)="deletePost(item.pid)">
+        <ion-icon name="trash"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
     <div class="postitem">
       <ion-avatar slot="start"><img src="../../assets/pic_1.jpg" /></ion-avatar>
     </div>
