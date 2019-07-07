@@ -7,7 +7,7 @@
 
 <ion-content>
   <div class="aligncenter">
-    <img class="header" src="../../assets/pic_1.jpg" />
+    <img class="header" src="data:image/png;base64,{{info?.pic}}" />
     <!--"data:image/jpeg;base64,{{pictureURL}}"-->
     <span class="caption">{{info?.firstName + " " + info?.lastName}}</span>
     <p>{{info?.bio}}</p>
@@ -27,7 +27,7 @@
       </ion-fab-button>
     </ion-fab>
     <div class="postitem">
-      <ion-avatar slot="start"><img src="../../assets/pic_1.jpg" /></ion-avatar>
+      <ion-avatar slot="start"><img src="data:image/png;base64,{{info?.pic}}" /></ion-avatar>
     </div>
     <h6 class="postname">{{info?.firstName + " " + info?.lastName}}</h6>
 

@@ -34,22 +34,22 @@
 
   <ion-card *ngFor="let item of items">
     <div class="item">
-      <ion-avatar slot="start"><img src="../../assets/pic_1.jpg" /></ion-avatar>
+      <ion-avatar slot="start"><img src="data:image/png;base64,{{item?.user?.pic}}" /></ion-avatar>
     </div>
-    <h6 class="name">{{item?.list?.user?.firstName + '\'s "' + item?.list?.listName+ '"'}}</h6>
+    <h6 class="name">{{item?.user?.firstName + '\'s "' + item?.listName+ '"'}}</h6>
 
     <ion-list lines="none">
 
-      <ion-item>1. <i>{{item?.list?.title1}}</i></ion-item>
-      <ion-item>2. <i>{{item?.list?.title2}}</i></ion-item>
-      <ion-item>3. <i>{{item?.list?.title3}}</i></ion-item>
-      <ion-item>4. <i>{{item?.list?.title4}}</i></ion-item>
-      <ion-item>5. <i>{{item?.list?.title5}}</i></ion-item>
-      <ion-item>6. <i>{{item?.list?.title6}}</i></ion-item>
-      <ion-item>7. <i>{{item?.list?.title7}}</i></ion-item>
-      <ion-item>8. <i>{{item?.list?.title8}}</i></ion-item>
-      <ion-item>9. <i>{{item?.list?.title9}}</i></ion-item>
-      <ion-item>10. <i>{{item?.list?.title10}}</i></ion-item>
+      <ion-item>1. <i>{{item?.title1}}</i></ion-item>
+      <ion-item>2. <i>{{item?.title2}}</i></ion-item>
+      <ion-item>3. <i>{{item?.title3}}</i></ion-item>
+      <ion-item>4. <i>{{item?.title4}}</i></ion-item>
+      <ion-item>5. <i>{{item?.title5}}</i></ion-item>
+      <ion-item>6. <i>{{item?.title6}}</i></ion-item>
+      <ion-item>7. <i>{{item?.title7}}</i></ion-item>
+      <ion-item>8. <i>{{item?.title8}}</i></ion-item>
+      <ion-item>9. <i>{{item?.title9}}</i></ion-item>
+      <ion-item>10. <i>{{item?.title10}}</i></ion-item>
 
 
       <!-- <h4>

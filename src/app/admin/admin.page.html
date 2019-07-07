@@ -43,9 +43,9 @@
     <ion-list>
       <ion-item button *ngFor="let del of search" (click)='viewProfile(del?.uid, true)'>
         <ion-avatar>
-          <img src="https://i.ytimg.com/vi/9snfz2sQMFQ/maxresdefault.jpg">
+          <img src="data:image/png;base64,{{del?.pic}}">
         </ion-avatar>
-        <ion-card-title class="ion-padding">{{del?.firstName + ' ' + del?.lastName}}</ion-card-title>
+        <ion-card-title class=" ion-padding">{{del?.firstName + ' ' + del?.lastName}}</ion-card-title>
       </ion-item>
     </ion-list>
   </div>
@@ -61,7 +61,7 @@
           </ion-fab-button>
         </ion-fab>
         <div class="item">
-          <ion-avatar slot="start"><img src="../../assets/pic_1.jpg" /></ion-avatar>
+          <ion-avatar slot="start"><img src="data:image/png;base64,{{del?.user?.pic}}" /></ion-avatar>
         </div>
 
         <h6 class="name">{{del?.user?.firstName + ' ' + del?.user?.lastName}}</h6>
@@ -85,7 +85,7 @@
         </ion-fab-button>
       </ion-fab>
       <div class="item">
-        <ion-avatar slot="start"><img src="../../assets/pic_1.jpg" /></ion-avatar>
+        <ion-avatar slot="start"><img src="data:image/png;base64,{{del?.user?.pic}}" /></ion-avatar>
       </div>
       <h6 class="name">{{del?.user?.firstName + '\'s "' + del?.listName+ '"'}}</h6>
 

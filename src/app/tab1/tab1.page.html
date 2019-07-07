@@ -54,14 +54,13 @@
   <!---------------------------------------------------------------------------------------------------------->
   <ion-card *ngFor="let item of items">
 
-    <div class="item">
-      <ion-avatar slot="start"><img src="../../assets/pic_1.jpg" /></ion-avatar>
+    <div ng-if="item.post.user.pic != null" class="item">
+      <ion-avatar slot="start"><img src="data:image/png;base64,{{item.user.pic}}" /></ion-avatar>
     </div>
-
-    <h6 class="name">{{item?.post?.user?.firstName + ' ' + item?.post?.user?.lastName}}</h6>
+    <h6 class="name">{{item?.user?.firstName + ' ' + item?.user?.lastName}}</h6>
 
     <div class="footer">
-      <h4>{{item?.post.post}}</h4>
+      <h4>{{item?.post}}</h4>
     </div>
 
   </ion-card>
