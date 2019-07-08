@@ -4,8 +4,9 @@
     <ion-back-button></ion-back-button>
   </ion-toolbar>
 </ion-header>
-
+<!--ngform, allows user to input their information to create an account-->
 <ion-content fullscreen>
+  <!--submits info to http post-->
   <form #loginForm="ngForm" (ngSubmit)="createClicked()" autocomplete="off">
     <ion-list lines="full" class="ion-no-margin ion-no-padding">
       <ion-item>
@@ -40,21 +41,8 @@
         <ion-datetime value="2019-06-27" displayFormat="YYYY MMM D" min="1960" max="2019" name="datefeild" type="text"
           required [(ngModel)]="date"></ion-datetime>
       </ion-item>
-
-
-      <!--<p id="n"></p>-->
-      <!--<script>
-          n =  new Date().toLocaleDateString()
-          y = n.getFullYear();
-          m = n.getMonth() + 1;
-          d = n.getDate();
-          document.getElementById("todaysdate").innerHTML = m + "/" + d + "/" + y;
-
-      </script>-->
-
-
     </ion-list>
-
+    <!--requires user to fill out all forms before submitting-->
     <div class="ion-padding">
       <ion-button expand="block" type="submit" class="ion-no-margin" [disabled]="!loginForm.form.valid">Create Account
       </ion-button>

@@ -7,11 +7,11 @@
   </ion-toolbar>
 </ion-header>
 
-
+<!--shows selected user from friends and people tab, 
+displays their name, pic, bio, lists, posts, etc-->
 <ion-content>
   <div class="aligncenter">
     <img class="header" src="data:image/png;base64,{{info?.pic}}" />
-    <!--"data:image/jpeg;base64,{{user.photo}}"-->
     <span class="caption">{{info?.firstName + " " + info?.lastName}}</span>
     <p>{{info?.bio}}</p>
   </div>
@@ -36,6 +36,7 @@
 
   </ion-card>
 
+  <!--infinite scroll if user has that many posts-->
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles">
     </ion-infinite-scroll-content>

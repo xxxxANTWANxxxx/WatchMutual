@@ -21,24 +21,18 @@ export class Tab1Page implements OnInit
     this.toggleInfiniteScroll();
   }
 
-
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-
-  //private post: string;
-  //private firstName: string;
-  //private lastName: string;
 
   private post: string;
   private items = [];//posts
   private allData = [];
   private info: object = null;
 
-
   constructor(private http: HttpClient, private router: Router, public alertController: AlertController) { }
-
 
   ionViewWillEnter()
   {
+    //reload posts every time page is entered
     this.num = 0;
     this.items = [];
     this.loadPosts();
@@ -47,13 +41,13 @@ export class Tab1Page implements OnInit
 
   postClicked()
   {
+    //when user posts, calls app.js to add row to db with new post
     const httpOptions = {
       headers: new HttpHeaders({
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       })
     };
-
     let postData = {
       "post": this.post,
 
@@ -72,6 +66,7 @@ export class Tab1Page implements OnInit
   }
 
   loadPosts()
+  //loads postsfrom db with http post
   {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -80,13 +75,13 @@ export class Tab1Page implements OnInit
       })
     };
 
-
     this.http.post("http://localhost:4200/tabs/tab1", httpOptions)
       .subscribe(tdata =>
       {
         this.allData = tdata['presults'];
         this.info = tdata['results'];
         this.addMoreItems()
+        //profile pic render
         function arrayBufferToBase64(buffer)
         {
           var binary = '';
@@ -114,76 +109,44 @@ export class Tab1Page implements OnInit
 
   addMoreItems()
   {
-
+    //when posts are being loaded into inf-scroll
     for (let i = this.num; i < this.num + 12; i++)
     {
       if (i >= this.allData.length)
         break
-      //console.log(this.allData.id[i])
       this.items.push(this.allData[i]);
-      //console.log(this.allData[i])
     }
     this.num += 12;
-
-
   }
 
   loadData(event)
   {
+    //when inf-scroll attempts to load data
     setTimeout(() =>
     {
-      //console.log('Done');
       this.addMoreItems();
       event.target.complete();
 
-      //App logic to determine if all data is loaded
-      //and disable the infinite scroll
       if (this.num > this.allData.length)
       {
         event.target.disabled = true;
       }
-
     }, 1000);
   }
-
+  //turns of inf-scroll when data has run out
   toggleInfiniteScroll()
   {
     this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
   }
-
-  doRefresh(event)
-  {
-    console.log('Begin async operation');
-    this.loadPosts();
-    setTimeout(() =>
-    {
-
-      console.log('Async operation has ended');
-      event.target.complete();
-    }, 2000);
-  }
-
-
-  clickEvent(): void
-  {
-    //this.router.navigateByUrl('stickers');
-    console.log(this.allData)
-  }
-
+  //affirms that users post was made successfully
   async presentAlert()
   {
     const alert = await this.alertController.create({
       header: 'Success!',
-      message: 'Your Post has been made, please refresh the page to see it..',
+      message: 'Your Post has been made!',
       buttons: ['OK']
     });
 
     await alert.present();
   }
-
-  refresh(): void
-  {
-    window.location.reload();
-  }
-
 }

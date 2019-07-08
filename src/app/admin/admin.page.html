@@ -14,7 +14,7 @@
     </ion-card-header>
 
   </ion-card>
-
+  <!--admin options, do one of the following: users, posts, lists-->
   <ion-list>
     <ion-radio-group>
       <ion-list-header>
@@ -37,7 +37,7 @@
       </ion-item>
     </ion-radio-group>
   </ion-list>
-
+  <!--people searcher, displays all users relavent to name with ngfor-->
   <div *ngIf="select == 1">
     <ion-searchbar placeholder="Search People" (ionInput)=searchPeople($event)></ion-searchbar>
     <ion-list>
@@ -50,7 +50,7 @@
     </ion-list>
   </div>
 
-
+  <!--post searcher, displays all posts relavent to posts with ngfor-->
   <div *ngIf="select == 2">
     <ion-searchbar placeholder="Search Posts" (ionInput)=searchPosts($event)></ion-searchbar>
     <ion-list>
@@ -74,7 +74,7 @@
     </ion-list>
   </div>
 
-
+  <!--list searcher, displays all lists relavent to list title with ngfor-->
   <div *ngIf="select == 3">
     <ion-searchbar placeholder="Search Lists" (ionInput)=searchLists($event)></ion-searchbar>
 
@@ -104,9 +104,7 @@
 
       </ion-list>
 
-
     </ion-card>
   </div>
-
 
 </ion-content>

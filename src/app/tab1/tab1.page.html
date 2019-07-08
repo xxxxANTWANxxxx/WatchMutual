@@ -3,35 +3,20 @@
     <ion-title>
       Home
     </ion-title>
-
-
   </ion-toolbar>
 </ion-header>
 
-
-<!--(click)='clickEvent()'-->
-<!--  <div *ngIf="givenName">
-    <hr>
-    <p>You are logged in as: <b>{{ givenName }}</b></p>
-    <div class="claims">
-      <strong>Claims from Identity Token JWT:</strong>
-      <pre>{{claims | json}}</pre>
-    </div>
-  </div>-->
-
-
 <ion-content>
-
-  <ion-refresher slot="relative" (ionRefresh)="doRefresh($event)">
+  <!-- <ion-refresher slot="relative" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
       refreshingText="Refreshing...">
     </ion-refresher-content>
-  </ion-refresher>
+  </ion-refresher> -->
 
-
+  <!--displays greeting-->
   <ion-card class="welcome-card">
     <ion-card-header>
-      <ion-card-title>Good Afternoon, {{info?.firstName}}</ion-card-title>
+      <ion-card-title>Hello, {{info?.firstName}}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <p>What's on, and what are your friends saying?</p>
@@ -39,6 +24,7 @@
       <p>Have somthing to say?</p>
       <form #loginForm="ngForm" autocomplete="off">
         <ion-item>
+          <!--post feild users types, and upon clicking submit button, calls post-->
           <ion-input placeholder="limit 100 characters" name="post" id="postfeild" type=" text" required
             [(ngModel)]="post">
           </ion-input>
@@ -46,25 +32,21 @@
         <ion-button expand="block" type="submit" class="ion-no-margin" [disabled]="!loginForm.form.valid"
           (click)="postClicked()">Post
         </ion-button>
-        <!-- <ion-button expand=" block" type="submit">Refresh
-        </ion-button> -->
       </form>
     </ion-card-content>
   </ion-card>
   <!---------------------------------------------------------------------------------------------------------->
+  <!--displays a users' friend's posts, in chronological order-->
   <ion-card *ngFor="let item of items">
-
     <div ng-if="item.post.user.pic != null" class="item">
       <ion-avatar slot="start"><img src="data:image/png;base64,{{item.user.pic}}" /></ion-avatar>
     </div>
     <h6 class="name">{{item?.user?.firstName + ' ' + item?.user?.lastName}}</h6>
-
     <div class="footer">
       <h4>{{item?.post}}</h4>
     </div>
-
   </ion-card>
-
+  <!--calls inf-scroll, if not disabled-->
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles">
     </ion-infinite-scroll-content>

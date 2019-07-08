@@ -6,6 +6,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen>
+  <!--very simple, logout and if user is admin, admin abilities-->
   <div *ngIf="userType == 'A'">
     <ion-button expand="full" type="button" (click)="admin()">Admin Abilities</ion-button>
   </div>

@@ -3,7 +3,7 @@
     <ion-title>WatchMutual</ion-title>
   </ion-toolbar>
 </ion-header>
-
+<!--ngform for logging in, when submitted, goes through confirmation for password-->
 <ion-content padding>
   <form #loginForm="ngForm" (ngSubmit)="loginClicked()" autocomplete="off">
 
@@ -21,7 +21,7 @@
           [(ngModel)]="password"></ion-input>
       </ion-item>
     </ion-list>
-
+    <!--email and password must be filled in-->
     <ion-button expand="block" type="submit" class="ion-no-margin" [disabled]="!loginForm.form.valid">Log In
     </ion-button>
     <p align=center>or</p>

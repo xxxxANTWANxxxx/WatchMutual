@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonInfiniteScroll } from '@ionic/angular';
+import { IonInfiniteScroll, ActionSheetController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DataService } from '../data.service';
@@ -26,19 +26,17 @@ export class Tab2Page
   private firstName: string;
   private lastName: string;
 
-
-  constructor(private http: HttpClient, public router: Router, private dataService: DataService) { }
-
-
+  constructor(private http: HttpClient, public router: Router, private dataService: DataService, public actionSheetController: ActionSheetController) { }
 
   ionViewWillEnter()
   {
+    //resets users load lists every time page is entered
     this.num = 0;
     this.items = [];
     this.loadLists();
     this.toggleInfiniteScroll();
   }
-
+  //http post to db to get friends of users' lists
   loadLists()
   {
     const httpOptions = {
@@ -47,20 +45,15 @@ export class Tab2Page
         'Content-Type': 'application/json'
       })
     };
-
-
     let postData = {
-
       "List": this.list,
       "firstName": this.firstName,
       "lastName": this.lastName
-
     }
-
-
     this.http.post("http://localhost:4200/find-lists", postData, httpOptions)
       .subscribe(tdata =>
       {
+        //pic encoder
         function arrayBufferToBase64(buffer)
         {
           var binary = '';
@@ -72,9 +65,8 @@ export class Tab2Page
           }
           return window.btoa(binary);
         }
-
+        //list contains all the lists from friends
         this.allData = tdata['results'];
-        console.log(this.allData)
         for (let i = 0; i < this.allData.length; i++)
         {
           if (this.allData[i].user.pic != null)
@@ -90,10 +82,9 @@ export class Tab2Page
         });
 
   };
-
+  //call for more items to be added to the ifnf-scroll list
   addMoreItems()
   {
-
     for (let i = this.num; i < this.num + 12; i++)
     {
       if (i >= this.allData.length)
@@ -104,38 +95,29 @@ export class Tab2Page
 
 
   }
-
+  //call to try to load data from inf-scroll
   loadData(event)
   {
     setTimeout(() =>
     {
-      //console.log('Done');
       this.addMoreItems();
       event.target.complete();
 
-      //App logic to determine if all data is loaded
-      //and disable the infinite scroll
       if (this.num > this.allData.length)
       {
         event.target.disabled = true;
       }
-
     }, 1000);
   }
-
+  //toggle inf-scroll if data runs out
   toggleInfiniteScroll()
   {
     this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
   }
-
-
-
-
+  //when user inputs text, omdbapi searches and returns results
   onInput($event)
   {
     let searchQuery = "http://www.omdbapi.com/?apikey=3a4e6009&s=" + this.searchInput;
-
-    //const req = new HttpRequest('GET', searchQuery);
 
     this.http.get(searchQuery).subscribe({
       next: position =>
@@ -152,33 +134,34 @@ export class Tab2Page
     });
 
   }
-
-  clickEvent()
+  //menu for edit or create
+  async presentActionSheet()
   {
-    this.router.navigateByUrl('/stickers');
-  }
-
-  clickClicked(): void
-  {
-    /*const httpOptions = {
-      headers: new HttpHeaders({
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      })
-    };
-
-    this.http.post("http://localhost:4200/create-lists", httpOptions)
-      .subscribe(() =>
-      {
-        console.log("list created")
-      }, error =>
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Lists',
+      buttons: [{
+        text: 'Create',
+        handler: () =>
         {
-          console.log('failure')
-        });*/
+          console.log('create');
+        }
+      }, {
+        text: 'Edit',
+        handler: () =>
+        {
+          console.log('edit');
+        }
+      },
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        handler: () =>
+        {
+          console.log('Cancel');
+        }
+      }]
+    });
+    await actionSheet.present();
   }
 
-  toggleSection(index)
-  {
-    this.information[index].open = !this.information[index].open;
-  }
 }

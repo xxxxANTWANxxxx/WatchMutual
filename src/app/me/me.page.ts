@@ -2,8 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonInfiniteScroll, AlertController } from '@ionic/angular';
 import { Router, NavigationExtras } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { DomSanitizer } from '@angular/platform-browser';
-
 
 @Component({
   selector: 'app-me',
@@ -11,23 +9,18 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./me.page.scss'],
 })
 
-
-
-
 export class MePage implements OnInit
 {
-
+  //again, very similiar to view page.ts
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-
 
   private num = 0
   private items = [];//posts
   private allData = [];
   private error: string;
 
-  constructor(private http: HttpClient, private router: Router, public alertController: AlertController, private _DomSanitizationService: DomSanitizer) { }
+  constructor(private http: HttpClient, private router: Router, public alertController: AlertController) { }
 
-  // private domSanitizer: DomSanitizer
   public info: object = null;
 
   ngOnInit()
@@ -37,6 +30,7 @@ export class MePage implements OnInit
 
   ionViewWillEnter()
   {
+    //loads posts and resets infinite scroll every time page is switched to
     this.items = [];
     this.toggleInfiniteScroll();
     this.num = 0;
@@ -46,6 +40,7 @@ export class MePage implements OnInit
 
   loadUser()
   {
+    //http post from db to load users info
     const httpOptions = {
       headers: new HttpHeaders({
         'Accept': 'application/json',
@@ -56,7 +51,7 @@ export class MePage implements OnInit
     this.http.post("http://localhost:4200/me", httpOptions)
       .subscribe(data =>
       {
-
+        //pic decode
         function arrayBufferToBase64(buffer)
         {
           var binary = '';
@@ -76,17 +71,12 @@ export class MePage implements OnInit
         this.info = data['results'];
         this.addMoreItems();
 
-
       }, error =>
         {
           console.log('failure')
         });
-
-    // const info: string = data['firstName'];
   }
-
-
-
+  //loading more posts from list
   addMoreItems()
   {
 
@@ -100,7 +90,7 @@ export class MePage implements OnInit
 
 
   }
-
+  //when inf-scroll attempts to load data
   loadData(event)
   {
     setTimeout(() =>
@@ -122,7 +112,7 @@ export class MePage implements OnInit
   }
 
 
-
+  //link to settings. users can log out, admins can also access admin abilities from there
   goToSettings(i): void
   {
     let navigationExtras: NavigationExtras = {
@@ -132,7 +122,7 @@ export class MePage implements OnInit
     };
     this.router.navigate(['settings'], navigationExtras);
   }
-
+  //posts deletion. affirms, then deletes users post
   async deletePost(i)
   {
     const alert = await this.alertController.create({
@@ -158,7 +148,7 @@ export class MePage implements OnInit
     await alert.present();
   }
 
-
+  //actual http post to drop row from db
   deleteUserPost(i)
   {
     const httpOptions = {

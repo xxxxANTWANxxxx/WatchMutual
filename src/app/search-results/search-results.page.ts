@@ -9,17 +9,23 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SearchResultsPage implements OnInit
 {
-
   private searchresults: any[] = [];
-
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit()
   {
+    //routes data from special for seach, using data service
     if (this.route.snapshot.data['special'])
     {
       this.searchresults = this.route.snapshot.data['special']
     }
   }
 
+
+  addTo(): void
+  {
+
+
+
+  }
 }

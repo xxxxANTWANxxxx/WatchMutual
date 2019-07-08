@@ -28,7 +28,7 @@ export class LoginPage implements OnInit
   ngOnInit()
   {
   }
-
+  //when user logs in, sends http post to db, to check if email and hashed password match up,if they do, user is logged in
   loginClicked()
   {
     const httpOptions = {
@@ -48,6 +48,7 @@ export class LoginPage implements OnInit
       .subscribe(data =>
       {
         if (data['Status']) this.login();
+        //if password and email are not in db
         else { this.presentAlert(); }
       }, error =>
         {
@@ -64,6 +65,7 @@ export class LoginPage implements OnInit
 
   createAccount(): void
   {
+    //link to create account page
     this.router.navigateByUrl('create-account');
   }
 

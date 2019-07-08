@@ -21,22 +21,13 @@ export class SettingsPage implements OnInit
     this.userType = this.router.getCurrentNavigation().extras.state.userType;
 
   }
-
+  //simply routes to login and admin
   ngOnInit()
   {
   }
 
   logout()
   {
-    /*const httpOptions = {
-      headers: new HttpHeaders({
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      })
-    };
-
-    this.http.post("http://localhost:4200/settings", httpOptions)
-      .subscribe();*/
     this.router.navigateByUrl('/login');
   }
   admin()

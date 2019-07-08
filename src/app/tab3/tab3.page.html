@@ -5,31 +5,19 @@
     </ion-title>
   </ion-toolbar>
   <ion-toolbar>
+    <!--searchbar for finding friends or people to friend-->
     <ion-searchbar placeholder="find a friend " (ionInput)=searchthis($event)></ion-searchbar>
   </ion-toolbar>
   <ion-toolbar>
-    <!-- <ion-button *ngIf="!toggled" (click)="toggle()" name="search">Add friends</ion-button> -->
     <ion-title>
       Your Friends
     </ion-title>
   </ion-toolbar>
-
 </ion-header>
 
-<!--<ion-content>
-  <ion-card class="welcome-card">
-
-    <ion-card-header>
-      <ion-card-title>Keep up with your friends!</ion-card-title>
-    </ion-card-header>
-
-  </ion-card>
-</ion-content>-->
-
 <ion-content>
-
   <ion-list>
-
+    <!--display filtered search results for friends-->
     <ion-item button *ngFor="let user of search2" (click)='viewProfile(user?.user?.uid)'>
       <ion-avatar>
         <img src="data:image/png;base64,{{user.user.pic}}">
@@ -41,7 +29,7 @@
         People
       </ion-title>
     </ion-item>
-
+    <!--display filtered search results for people-->
     <ion-item button *ngFor="let add of search" (click)='viewProfile(add?.uid)'>
       <ion-avatar>
         <img src="data:image/png;base64,{{add.pic}}">
