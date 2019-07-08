@@ -1,0 +1,25 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>Reorder</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="toggleReorder()">Toggle</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-list>
+    <ion-list-header>reorder your list. only the top 10 will be kept</ion-list-header>
+    <ion-reorder-group id="reorder" (ionItemReorder)="reorderItems($event)">
+      <ion-item *ngFor="let item of items, let i = index">
+        <ion-label>
+          {{item}}
+        </ion-label>
+        <ion-reorder slot="end">
+          <ion-icon *ngIf="i==10" name="add-circle"></ion-icon>
+        </ion-reorder>
+
+      </ion-item>
+    </ion-reorder-group>
+  </ion-list>
+</ion-content>

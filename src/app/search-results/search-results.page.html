@@ -4,12 +4,14 @@
     <ion-back-button></ion-back-button>
   </ion-toolbar>
 </ion-header>
-
+<!--displays search results of what was searched. user has option to add show to list-->
 <ion-content padding>
   <ion-card *ngFor="let i of searchresults ">
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button (click)="addTo(i.Title)">
-        <ion-icon name="add"></ion-icon>
+      <ion-fab-button>
+        <ion-icon name="add" (click)="displayListSelect( i.Title, i.Year)">
+
+        </ion-icon>
       </ion-fab-button>
     </ion-fab>
     <ion-card-header>
