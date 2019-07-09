@@ -18,6 +18,8 @@ export class MePage implements OnInit
   private items = [];//posts
   private allData = [];
   private error: string;
+  private firstName: string;
+  private lastName: string;
 
   constructor(private http: HttpClient, private router: Router, public alertController: AlertController) { }
 
@@ -69,6 +71,8 @@ export class MePage implements OnInit
 
         this.allData = data['posts'];
         this.info = data['results'];
+        this.firstName = data['results'].firstName
+        this.lastName = data['results'].lastName
         this.addMoreItems();
 
       }, error =>
@@ -174,7 +178,9 @@ export class MePage implements OnInit
   {
     let navigationExtras: NavigationExtras = {
       state: {
-        uid: i
+        uid: i,
+        firstName: this.firstName,
+        lastName: this.lastName
       }
     };
     this.router.navigate(['display-list'], navigationExtras);
