@@ -15,8 +15,8 @@ displays their name, pic, bio, lists, posts, etc-->
     <span class="caption">{{info?.firstName + " " + info?.lastName}}</span>
     <p>{{info?.bio}}</p>
   </div>
-  <ion-button expand="block" (click)="sendfriend()">Add friend</ion-button>
-  <ion-button expand="block">View {{info?.firstName}}'s Lists</ion-button>
+  <ion-button expand="block" (click)="sendfriend(lookUpId)">Add friend</ion-button>
+  <ion-button expand="block" (click)="viewLists(lookUpId)">View {{info?.firstName}}'s Lists</ion-button>
   <div *ngIf="adminstatus == true">
     <ion-button expand="block" (click)="deleteAccount()">Delete Account</ion-button>
   </div>

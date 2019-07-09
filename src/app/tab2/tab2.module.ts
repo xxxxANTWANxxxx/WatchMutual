@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     RouterModule.forChild([{ path: '', component: Tab2Page }])
   ],
-  declarations: [Tab2Page]
+  declarations: [Tab2Page,],
+
 })
 export class Tab2PageModule { }

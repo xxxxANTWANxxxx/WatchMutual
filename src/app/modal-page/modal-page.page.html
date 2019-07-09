@@ -1,8 +1,12 @@
 <ion-header translucent>
   <ion-toolbar>
     <ion-title>Reorder</ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button (click)="dismiss()">Dismiss</ion-button>
+    </ion-buttons>
     <ion-buttons slot="primary">
-      <ion-button (click)="toggleReorder()">Toggle</ion-button>
+      <ion-button *ngIf="edit == true" (click)="toggleReorder()" (click)="updateList()">Save</ion-button>
+      <ion-button *ngIf="edit == false" (click)="toggleReorder()">Edit</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -13,7 +17,7 @@
     <ion-reorder-group id="reorder" (ionItemReorder)="reorderItems($event)">
       <ion-item *ngFor="let item of items, let i = index">
         <ion-label>
-          {{item}}
+          {{i+1}}. {{item}}
         </ion-label>
         <ion-reorder slot="end">
           <ion-icon *ngIf="i==10" name="add-circle"></ion-icon>

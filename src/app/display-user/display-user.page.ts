@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonInfiniteScroll, AlertController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -19,6 +19,9 @@ export class DisplayUserPage implements OnInit
   private allData = [];
   private lookUpId: number;
   private adminstatus: boolean;
+  private firstName: string;
+  private lastName: string;
+
 
 
   constructor(private http: HttpClient, private router: Router, public alertController: AlertController)
@@ -60,7 +63,6 @@ export class DisplayUserPage implements OnInit
     this.http.post("http://localhost:4200/display-user", postData, httpOptions)
       .subscribe(data =>
       {
-
         function arrayBufferToBase64(buffer)
         {
           var binary = '';
@@ -79,15 +81,14 @@ export class DisplayUserPage implements OnInit
         //assgining a list for all the posts, and the ones displayed each time inf-scroll is activated
         this.allData = data['posts'];
         this.info = data['results'];
-        //console.log(data['results'])
+        this.firstName = data['results'].firstName
+        this.lastName = data['results'].lastName
         this.addMoreItems()
 
       }, error =>
         {
           console.log('failure')
         });
-
-    // const info: string = data['firstName'];
   }
 
   //send friend request, queries the table in db, checks if users are friends. if not, adds friends on both ends. if users are already friends, then will notify user of this
@@ -226,4 +227,16 @@ export class DisplayUserPage implements OnInit
           console.log('failure')
         });
   }
+  viewLists(i)
+  {
+    let navigationExtras: NavigationExtras = {
+      state: {
+        uid: i,
+        firstName: this.firstName,
+        lastName: this.lastName
+      }
+    };
+    this.router.navigate(['display-list'], navigationExtras);
+  }
+
 }

@@ -169,7 +169,15 @@ export class MePage implements OnInit
         {
           console.log('failure')
         });
-
+  }
+  viewLists(i)
+  {
+    let navigationExtras: NavigationExtras = {
+      state: {
+        uid: i
+      }
+    };
+    this.router.navigate(['display-list'], navigationExtras);
   }
   // onSelectFile(event)
   // {

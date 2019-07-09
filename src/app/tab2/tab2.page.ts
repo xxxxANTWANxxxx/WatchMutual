@@ -1,9 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonInfiniteScroll, ActionSheetController } from '@ionic/angular';
+import { IonInfiniteScroll, ActionSheetController, AlertController, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DataService } from '../data.service';
-
+import { ModalPagePage } from '../modal-page/modal-page.page';
 
 @Component({
   selector: 'app-tab2',
@@ -18,6 +18,7 @@ export class Tab2Page
   private searchresults: any[] = [];
   private items = [];//posts
   private allData = [];
+  private UserallData = [];
   information: any[];
 
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
@@ -26,7 +27,7 @@ export class Tab2Page
   private firstName: string;
   private lastName: string;
 
-  constructor(private http: HttpClient, public router: Router, private dataService: DataService, public actionSheetController: ActionSheetController) { }
+  constructor(private http: HttpClient, public router: Router, private dataService: DataService, private modalController: ModalController, public actionSheetController: ActionSheetController, private alertController: AlertController) { }
 
   ionViewWillEnter()
   {
@@ -34,6 +35,7 @@ export class Tab2Page
     this.num = 0;
     this.items = [];
     this.loadLists();
+    this.loadUserLists();
     this.toggleInfiniteScroll();
   }
   //http post to db to get friends of users' lists
@@ -140,16 +142,16 @@ export class Tab2Page
     const actionSheet = await this.actionSheetController.create({
       header: 'Lists',
       buttons: [{
-        text: 'Create',
+        text: 'Create New List',
         handler: () =>
         {
-          console.log('create');
+          this.displayNewList()
         }
       }, {
-        text: 'Edit',
+        text: 'Edit An Existing List',
         handler: () =>
         {
-          console.log('edit');
+          this.displayListSelect()
         }
       },
       {
@@ -157,11 +159,151 @@ export class Tab2Page
         role: 'cancel',
         handler: () =>
         {
-          console.log('Cancel');
         }
       }]
     });
     await actionSheet.present();
   }
 
+  loadUserLists()
+  {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      })
+    };
+    let postData = {
+      "List": this.list
+    }
+    this.http.post("http://localhost:4200/user-lists", postData, httpOptions)
+      .subscribe(tdata =>
+      {
+        //list contains all the lists from friends
+        this.UserallData = tdata['results'];
+
+      }, error =>
+        {
+          console.log('failure')
+        });
+
+  };
+
+  async displayListSelect()
+  {
+    this.loadUserLists();
+    var inputs = [];
+    for (var i = 0; i < this.UserallData.length; i++)
+    {
+      inputs.push(
+        {
+          name: i,
+          type: 'radio',
+          label: this.UserallData[i].listName,
+          value: this.UserallData[i].lid,
+        }
+      )
+    }
+
+    const actionSheet = await this.alertController.create({
+      header: 'Lists',
+      inputs: inputs,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () =>
+          {
+          }
+        },
+        {
+          text: 'select list',
+          handler: (data) =>
+          {
+            if (data != null)
+              this.presentModal(data);
+            else { this.displayListSelect() }
+          }
+        }]
+
+    });
+    await actionSheet.present();
+
+  }
+
+  async displayNewList()
+  {
+    const actionSheet = await this.alertController.create({
+      header: 'New List',
+      inputs: [
+        {
+          name: 'input',
+          type: 'text',
+          label: '1',
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () =>
+          {
+          }
+        },
+        {
+          text: 'Create',
+          handler: (data) =>
+          {
+            if (data.input != "")
+            {
+              this.createList(data.input)
+              this.presentAlert();
+            }
+            else { this.displayNewList() }
+          }
+        }]
+
+    });
+    await actionSheet.present();
+
+  }
+  createList(input)
+  {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      })
+    };
+    this.http.post("http://localhost:4200/create-lists", { "listName": input }, httpOptions)
+      .subscribe(tdata =>
+      {
+
+      }, error =>
+        {
+          console.log('failure')
+        });
+  }
+
+  async presentModal(data)
+  {
+    const modal = await this.modalController.create({
+      component: ModalPagePage,
+      componentProps: {
+        passlid: data,
+      }
+    })
+    await modal.present()
+  }
+
+  async presentAlert()
+  {
+    const alert = await this.alertController.create({
+      header: 'Success!',
+      message: 'Your List has been created! Start searching for some media to add to it',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
 }

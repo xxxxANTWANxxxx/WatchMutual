@@ -13,7 +13,7 @@
   </div>
 
   <!--link to lists-->
-  <ion-button expand="block">View Your Lists</ion-button>
+  <ion-button expand="block" (click)="viewLists(info?.uid)">View Your Lists</ion-button>
   <!--link to settings-->
   <ion-button expand="block" type="button" (click)="goToSettings(info?.userType)">Settings</ion-button>
   <ion-card-title class="aligncenter">Your Posts</ion-card-title>
