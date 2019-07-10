@@ -18,6 +18,7 @@ export class Tab1Page implements OnInit
 
   ngOnInit()
   {
+    this.loadPosts();
     this.toggleInfiniteScroll();
   }
 
