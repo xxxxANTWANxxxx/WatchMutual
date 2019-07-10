@@ -32,6 +32,7 @@ export class MePage implements OnInit
   private error: string;
   private firstName: string;
   private lastName: string;
+  private bio: string;
   private url = '';
   private pictureURL;
 
@@ -87,6 +88,7 @@ export class MePage implements OnInit
         this.info = data['results'];
         this.firstName = data['results'].firstName
         this.lastName = data['results'].lastName
+        this.bio = data['results'].bio
         this.addMoreItems();
 
       }, error =>
@@ -210,6 +212,79 @@ export class MePage implements OnInit
     };
     this.router.navigate(['display-post'], navigationExtras);
   }
+
+  async updateBio(i)
+  {
+    const actionSheet = await this.alertController.create({
+      header: 'Update your Bio',
+      inputs: [
+        {
+          name: 'input',
+          type: 'text',
+          label: '1',
+          value: this.bio,
+          //white-space: normal
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () =>
+          {
+          }
+        },
+        {
+          text: 'Update',
+          handler: (data) =>
+          {
+            if (data.input != "")
+            {
+              this.updateUserBio(data.input, i)
+              this.presentAlert();
+            }
+            else { this.updateBio(i) }
+          }
+        }]
+
+    });
+    await actionSheet.present();
+
+  }
+
+  updateUserBio(bio, i)
+  {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      })
+    };
+
+    this.http.post("http://localhost:4200/update-bio", { uid: i, bio: bio }, httpOptions)
+      .subscribe(fdata =>
+      {
+        this.loadUser();
+      }, error =>
+        {
+          console.log('failure')
+        });
+
+  }
+
+  async presentAlert()
+  {
+    const alert = await this.alertController.create({
+      header: 'Success!',
+      message: 'Your Bio has been updated!',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+}
   // onSelectFile(event)
   // {
   //   if (event.target.files && event.target.files[0])
@@ -243,4 +318,4 @@ export class MePage implements OnInit
 
   //   }
   // }
-}
+
