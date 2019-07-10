@@ -22,7 +22,7 @@
   <ion-card-title class="aligncenter">Your Posts</ion-card-title>
 
   <!--displays posts-->
-  <ion-card *ngFor="let item of items">
+  <ion-card *ngFor="let item of items" (click)="viewPost(item.pid)">
     <ion-fab vertical="top" horizontal="end" slot="fixed">
       <!--delete post option-->
       <ion-fab-button color="danger" (click)="deletePost(item.pid)">

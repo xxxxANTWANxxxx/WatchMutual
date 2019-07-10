@@ -200,6 +200,16 @@ export class MePage implements OnInit
     };
     this.router.navigate(['display-list'], navigationExtras);
   }
+
+  viewPost(i)
+  {
+    let navigationExtras: NavigationExtras = {
+      state: {
+        pid: i
+      }
+    };
+    this.router.navigate(['display-post'], navigationExtras);
+  }
   // onSelectFile(event)
   // {
   //   if (event.target.files && event.target.files[0])
