@@ -23,7 +23,7 @@ displays their name, pic, bio, lists, posts, etc-->
   <ion-card-title class="aligncenter">{{info?.firstName}}'s Posts</ion-card-title>
 
 
-  <ion-card *ngFor="let item of items">
+  <ion-card *ngFor="let item of items" (click)="viewPost(item.pid)">
 
     <div class="postitem">
       <ion-avatar slot="start"><img src="data:image/png;base64,{{info?.pic}}" /></ion-avatar>

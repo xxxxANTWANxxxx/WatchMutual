@@ -84,7 +84,6 @@ export class DisplayUserPage implements OnInit
         this.firstName = data['results'].firstName
         this.lastName = data['results'].lastName
         this.addMoreItems()
-
       }, error =>
         {
           console.log('failure')
@@ -239,4 +238,13 @@ export class DisplayUserPage implements OnInit
     this.router.navigate(['display-list'], navigationExtras);
   }
 
+  viewPost(i)
+  {
+    let navigationExtras: NavigationExtras = {
+      state: {
+        pid: i
+      }
+    };
+    this.router.navigate(['display-post'], navigationExtras);
+  }
 }
