@@ -11,6 +11,18 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export class MePage implements OnInit
 {
+  base64ToArrayBuffer(base64)
+  {
+    var binary_string = window.atob(base64);
+    var len = binary_string.length;
+    var bytes = new Uint8Array(len);
+    for (var i = 0; i < len; i++)
+    {
+      bytes[i] = binary_string.charCodeAt(i);
+    }
+    return bytes.buffer;
+  }
+
   //again, very similiar to view page.ts
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
@@ -20,6 +32,8 @@ export class MePage implements OnInit
   private error: string;
   private firstName: string;
   private lastName: string;
+  private url = '';
+  private pictureURL;
 
   constructor(private http: HttpClient, private router: Router, public alertController: AlertController) { }
 
@@ -174,6 +188,7 @@ export class MePage implements OnInit
           console.log('failure')
         });
   }
+
   viewLists(i)
   {
     let navigationExtras: NavigationExtras = {
@@ -191,12 +206,31 @@ export class MePage implements OnInit
   //   {
   //     var reader = new FileReader();
 
-  //     reader.readAsArrayBuffer(this.pictureURL); // read file as data url
+  //     //reader.readAsDataURL(event.target.files[0]); // read file as data url
+  //     this.pictureURL = reader.readAsArrayBuffer(event.target.files[0]); // read file as data url
 
   //     reader.onload = (event) =>
   //     { // called once readAsDataURL is completed
-  //       this.url = event.target.result;
+  //       this.pictureURL = event.target.result.at(0);
+  //       console.log(this.pictureURL)
+
+  //       const httpOptions = {
+  //         headers: new HttpHeaders({
+  //           'Accept': 'application/json',
+  //           'Content-Type': 'application/json'
+  //         })
+  //       };
+
+  //       this.http.post("http://localhost:4200/profile-pic", { pic: event.target.result }, httpOptions)
+  //         .subscribe(fdata =>
+  //         {
+  //         }, error =>
+  //           {
+  //             console.log('failure')
+  //           });
+
   //     }
+
   //   }
   // }
 }

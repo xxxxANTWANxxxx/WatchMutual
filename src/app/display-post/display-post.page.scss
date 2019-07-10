@@ -1,0 +1,14 @@
+.name {  display: inline-block; 
+    text-align: left;
+  } 
+  div.item {
+      vertical-align: bottom;
+      display: inline-block;
+      width: 60px;
+  }
+  .post {float: right}
+  
+  .welcome-card ion-img {
+    min-height: 35vh;
+    overflow: hidden;
+  }

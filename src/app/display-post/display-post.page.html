@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{allData?.user?.firstName + " " + allData?.user?.lastName + "'s Post"}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="welcome-card">
+    <div class="item">
+      <ion-avatar slot="start"><img src="data:image/png;base64,{{allData?.user?.pic}}" /></ion-avatar>
+    </div>
+    <h6 class="name">{{allData?.user?.firstName + " " + allData?.user?.lastName}}</h6>
+    <div class="footer">
+      <h4>{{allData?.post}}</h4>
+    </div>
+    <form #loginForm="ngForm" autocomplete="off">
+      <ion-item>
+        <!--post feild users types, and upon clicking submit button, calls post-->
+        <ion-input placeholder="Reply to {{allData?.user?.firstName}}" name="comment" id="commentfeild" type=" text"
+          required [(ngModel)]="comment">
+        </ion-input>
+      </ion-item>
+      <ion-button expand="block" type="submit" class="ion-no-margin" [disabled]="!loginForm.form.valid"
+        (click)="replyClicked()">Post
+      </ion-button>
+    </form>
+  </ion-card>
+  <ion-card *ngFor="let item of allComments">
+    <div class="item">
+      <ion-avatar slot="start"><img src="data:image/png;base64,{{item?.user?.pic}}" /></ion-avatar>
+    </div>
+    <h6 class="name">{{item?.user?.firstName + " " + item?.user?.lastName}}</h6>
+    <div class="footer">
+      <h4>{{item?.comment}}</h4>
+    </div>
+  </ion-card>
+</ion-content>

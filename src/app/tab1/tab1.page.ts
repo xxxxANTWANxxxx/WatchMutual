@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonInfiniteScroll, AlertController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
@@ -148,5 +148,21 @@ export class Tab1Page implements OnInit
     });
 
     await alert.present();
+  }
+
+  viewPost(i)
+  {
+    let navigationExtras: NavigationExtras = {
+      state: {
+        pid: i
+      }
+    };
+    this.router.navigate(['display-post'], navigationExtras);
+  }
+
+  viewprofile(i)
+  {
+
+
   }
 }

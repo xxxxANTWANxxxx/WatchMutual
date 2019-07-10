@@ -23,9 +23,9 @@
       <br>
       <p>Have somthing to say?</p>
       <form #loginForm="ngForm" autocomplete="off">
-        <ion-item>
+        <ion-item lines="none">
           <!--post feild users types, and upon clicking submit button, calls post-->
-          <ion-input placeholder="limit 100 characters" name="post" id="postfeild" type=" text" required
+          <ion-input placeholder=" limit 100 characters" name="post" id="postfeild" type=" text" required
             [(ngModel)]="post">
           </ion-input>
         </ion-item>
@@ -37,7 +37,7 @@
   </ion-card>
   <!---------------------------------------------------------------------------------------------------------->
   <!--displays a users' friend's posts, in chronological order-->
-  <ion-card *ngFor="let item of items">
+  <ion-card *ngFor="let item of items" (click)="viewPost(item.pid)">
     <div ng-if="item.post.user.pic != null" class="item">
       <ion-avatar slot="start"><img src="data:image/png;base64,{{item.user.pic}}" /></ion-avatar>
     </div>

@@ -12,7 +12,8 @@ const routes: Routes = [
   { path: 'search-results/:id', resolve: { special: DataResolverService }, loadChildren: './search-results/search-results.module#SearchResultsPageModule' },  { path: 'display-user', loadChildren: './display-user/display-user.module#DisplayUserPageModule' },
   { path: 'admin', loadChildren: './admin/admin.module#AdminPageModule' },
   { path: 'modal-page', loadChildren: './modal-page/modal-page.module#ModalPagePageModule' },
-  { path: 'display-list', loadChildren: './display-list/display-list.module#DisplayListPageModule' }
+  { path: 'display-list', loadChildren: './display-list/display-list.module#DisplayListPageModule' },
+  { path: 'display-post', loadChildren: './display-post/display-post.module#DisplayPostPageModule' }
 
 ];
 @NgModule({
