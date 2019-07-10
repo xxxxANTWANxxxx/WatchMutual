@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "pure-pact-243600",
+  "private_key_id": "4ae975370ed6601ec6becc8667bf87215dc5ccba",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC/XqwOA4ulH4BI\ndJlOuhdhf+8nuJ+Skgq6Y1WctrQzQbcy+1OLIhcvNHmQjVVOX4KXOTMhl4tOsXGp\nFpyX+eAFRXVrm1r+6aOznWDvhW9X2eKW77MkUkWk66ZvrNoQyXEgDWAKCdwivWiM\n/QaDoT6GI9+SQM5l8hgFrv0qJ0ucphvHSGOT4bN3nTh1kYmH2MVzSCHAkQNwAh9r\nAzOAA3irplG8aBtHUA7vZ+ERAaDIPP9O2kAM3dYw1nKqM3Op5X36i7oyfpz99Scd\nosvhllhAoGv6nTmI/5UhIlbhkz9xTjDTNZL8qH7Fza+Ixw4L+odf8KCul4CUGTYa\nj1YZgjVzAgMBAAECggEAJ2VCbzocn9gNzRyvyMy3bntrTNaNhxtoePllEPdtvlWL\ndMPXbX+NnUqksfTeeF1iIWaFl6c+ZutRljkQ8Jpgm0UyyH25bFvFtv6xi22BP+kb\nY+4hh1smei6G21uOosENeEc4m6hu+HnckZWvJx7lI7Ez38RWmRcPCfB9rpVbU/pl\nAPeRoHpcNJOrpPI0ow2xxz8IuTELg1wHQTN/d9tb1AVnUD1SxMmU+i2ivJYUvvmo\nvd/dvkixYsl6dKjKypZlmyIZ+YsyCO9kalL2LHvPfzWttENM5bzzyCBzKdw6O4dN\nbxjxPH62VQE7EFgIs9xwUp0xjpYrkVePTMsTbay9zQKBgQDdkbU05VjDyAIGeXoQ\nKsT7FCSvFJgaOeMg+e7b/lU8zKJZ2s3Qwkiym2jn95yS4AOFerytOvV94CT4dLPc\noeYHSDH5DcVVP8HFHUvhRH0QIDIQI5YsxHVozt0CwFYddC2I5FAZgtBpKFoNUPYm\n8TAmdNi/4ksz0tf4k1zGS7Oz3wKBgQDdG5jOfz/q1s0fn9HOXcN7fnql0HmV4Btl\nYFHfzlyLGml8uM3WFmX7x2FZns+QTThj5Jfa5xz/RC6QmzL/qUMYlw0fS1DD07Dx\nUJFZiFS9cE16E9xrcTu2JOW8rPtJvu/G/zxy/Nt5iGXY2ti6oSPEEhr6LmADBxSB\nGb47WfFQ7QKBgQCm55Pw/LMZCBk+d1OTyiQIXuwjVwgc+W428Q8VeUkMO7owpbpU\nf4XzxU4JL2Uq3sTIT+TBOaCj6azv3DmBAhQdeCzsx4rW5Og6bA806jqrYxVTQvtl\nTbiD8xBZejlkhpemfxY3oWsNS/BKB6rlOtpinbKJGRY9O56lCZzhYzVDUQKBgEDC\ng3f/xz3GGiAoFDBIQCgcfFmyfNoL4JpJotFVRL+tRbY0/ny05Lvgwr+YBx0xsNF5\nM4z24gRV+Pl7q208Kx25qCtBSO+CQjH7sgayKnetu9OEm6uQZ7fKiMtBMvx/gwUa\n3p6jNrka3RGtz4qiBbK4xtP93zsjyLqjSpdhmY9lAoGBAKkbYH+OlRaW4RiPcW7X\nQXe+D3rZVz2tMI749RFaLKSYNhU2ath8xL5bhCjiJoiN9DfmIJht/WNyVpWe+WE8\nAcWiraEMOlw72OBApHY95ZTKpPcfHMskK6LGJQ+eMR2FWcy4IJn63m/WGIoyEyfD\niArhSZvMZoqgYaJsGI+xKivQ\n-----END PRIVATE KEY-----\n",
+  "client_email": "watchmutualserviceaccount@pure-pact-243600.iam.gserviceaccount.com",
+  "client_id": "108439204528282738288",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/watchmutualserviceaccount%40pure-pact-243600.iam.gserviceaccount.com"
+}
