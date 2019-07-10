@@ -25,7 +25,7 @@ and place in a directory easily accessable
 
 9. In the 2nd powershell, cd to the server directory and run the command 'nodemon app.js'. You should now be connected to the database.
 
-10.in powershell, vscode, etc, cd to the WatchMutual directory, and run the 'command ionic serve --lab'
+10. In powershell, vscode, etc, cd to the WatchMutual directory, and run the 'command ionic serve --lab'
 
 11.questions? 
 Email: anthoycL701@aol.com
